@@ -5,9 +5,6 @@ import dotenv from 'dotenv'
 import authRoutes from './routes/authRoutes.js'
 import linkRoutes from './routes/linkRoutes.js'
 
-// Importar el cliente de la bbdd de Supabase
-import supabase from './config/db.js'
-
 // Cargar variable de entorno
 dotenv.config()
 

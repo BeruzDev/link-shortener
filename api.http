@@ -1,0 +1,8 @@
+### Crear un nuevo enlace acortado
+POST http://localhost:5000/links/create
+Content-Type: application/json
+
+{
+  "originalUrl": "https://albertcastroportfolio.netlify.app/"
+}
+
