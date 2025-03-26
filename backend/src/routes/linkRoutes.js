@@ -10,15 +10,15 @@ import { authenticateToken } from '../middlewares/authMiddleware.js'
 const router = express.Router()
 
 // Crear link
-router.post('/create', createLinkController)
+router.post('/', createLinkController)
 
 // Obtener links del user (requiere auth)
 router.get('/my-links', authenticateToken, getLinksByUserIdController)
 
 // Actualizar link (requiere auth)
-router.put('/update/:linkId', authenticateToken, updateLinkController)
+router.put('/:linkId', authenticateToken, updateLinkController)
 
 // Eliminar link (requiere auth)
-router.delete('/delete/:linkId', authenticateToken, deleteLinkController)
+router.delete('/:linkId', authenticateToken, deleteLinkController)
 
 export default router

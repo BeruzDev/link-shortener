@@ -8,12 +8,13 @@ const createUser = async (email, password) => {
   const { data, error } = await supabase
     .from('users')
     .insert([{ email, password: hashedPassword }])
+    .select()
 
   if (error) {
     throw new Error('Error creating user: ' + error.message)
   }
 
-  return data
+  return data && data[0] ? data[0].id : null
 }
 
 // Recuperar usuario por email

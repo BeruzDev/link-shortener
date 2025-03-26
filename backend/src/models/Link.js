@@ -37,12 +37,13 @@ const updateLink = async (linkId, newShortUrl) => {
     .from('links')
     .update({ short_url: newShortUrl })
     .eq('id', linkId)
+    .select()
 
   if (error) {
     throw new Error('Error updating link: ' + error.message)
   }
 
-  return data
+  return data ? data[0] : null
 }
 
 // Eliminar un enlace
@@ -56,4 +57,19 @@ const deleteLink = async (linkId) => {
   return data
 }
 
-export { createLink, getLinksByUserId, updateLink, deleteLink }
+// Redireccion de shortUrl a originalUrl
+const redirectLink = async (shortUrl) => {
+  const { data, error } = await supabase
+    .from('links')
+    .select('original_url')
+    .eq('short_url', shortUrl)
+    .single()
+
+  if (error) {
+    throw new Error('Error geting links: ' + error.message)
+  }
+
+  return data ? data.original_url : null
+}
+
+export { createLink, getLinksByUserId, updateLink, deleteLink, redirectLink }

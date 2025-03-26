@@ -1,8 +1,20 @@
 ### Crear un nuevo enlace acortado
-POST http://localhost:5000/links/create
+POST http://localhost:5000/links/
 Content-Type: application/json
 
 {
-  "originalUrl": "https://albertcastroportfolio.netlify.app/"
+  "originalUrl": "https://github.com/BeruzDev"
 }
 
+### Modificar el endpoint
+PUT http://localhost:5000/links/7c83890e-c7e5-4fd9-a857-fe2033b7d324
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjNlNzE2OC1kY2JmLTQxMjktYmQzYS1lNWE3NTMwNDVhNTMiLCJpYXQiOjE3NDI5OTAyMDEsImV4cCI6MTc0Mjk5MzgwMX0.LQPeet9xSM9q-6ATVKzZSIZHD-15EW62y-kjbHqpH1M
+
+{
+  "linkId": "7c83890e-c7e5-4fd9-a857-fe2033b7d324",
+  "newShortUrl": "github"
+}
+
+### Redireccion con el enlace proporcionado
+GET http://localhost:5000/0a1381e3

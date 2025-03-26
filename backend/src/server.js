@@ -4,6 +4,7 @@ import morgan from 'morgan'
 import dotenv from 'dotenv'
 import authRoutes from './routes/authRoutes.js'
 import linkRoutes from './routes/linkRoutes.js'
+import { redirectLinkController } from './controllers/linkController.js'
 
 // Cargar variable de entorno
 dotenv.config()
@@ -20,6 +21,9 @@ app.use(express.json())
 app.get('/', (req, res) => {
   res.send('Server is running...')
 })
+
+// Redireccion a originalUrl
+app.get('/:shortUrl', redirectLinkController)
 
 // Ruta de autenticación
 app.use('/auth', authRoutes)
