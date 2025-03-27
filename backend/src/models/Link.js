@@ -1,7 +1,7 @@
 import supabase from '../config/db.js'
 
 // Crear un enlace
-const createLink = async (originalUrl, shortUrl, userId = null) => {
+const createLink = async (originalUrl, shortUrl, userId) => {
   const { data, error } = await supabase
     .from('links')
     .insert([
@@ -13,7 +13,6 @@ const createLink = async (originalUrl, shortUrl, userId = null) => {
     throw new Error('Error shortening link: ' + error.message)
   }
 
-  console.log(data)
   return data
 }
 

@@ -1,13 +1,10 @@
 import supabase from '../config/db.js'
-import bcrypt from 'bcryptjs'
 
 // Crear un nuevo usuario
 const createUser = async (email, password) => {
-  const hashedPassword = await bcrypt.hash(password, 10)
-
   const { data, error } = await supabase
     .from('users')
-    .insert([{ email, password: hashedPassword }])
+    .insert([{ email, password}])
     .select()
 
   if (error) {
@@ -22,14 +19,17 @@ const getUserByEmail = async (email) => {
   const { data, error } = await supabase
     .from('users')
     .select('*')
-    .eq('email', email) //<-- buscar igualdad supabase
-    .single() // <-- Solo busca un unico usuario
+    .eq('email', email)
 
   if (error) {
     throw new Error('Error fetching user: ' + error.message)
   }
 
-  return data
+  if (!data || data.length === 0) {
+    return null
+  }
+
+  return data[0] 
 }
 
 export { createUser, getUserByEmail }

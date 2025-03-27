@@ -1,16 +1,18 @@
+import supabase from '../config/db.js'
 import {
   createLink,
   getLinksByUserId,
   updateLink,
   deleteLink,
-  redirectLink
+  redirectLink,
 } from '../models/Link.js'
 import { v4 as uuidv4 } from 'uuid'
 
 // Crear un enlace
 const createLinkController = async (req, res) => {
-  const { originalUrl, shortUrl } = req.body
-  const userId = req.user ? req.user.id : null // <-- id recuperado del middleware de autenticacion
+  const { originalUrl, shortUrl, userId } = req.body
+
+  const finalUserId = userId || null
 
   const generatedShortUrl = shortUrl || uuidv4().slice(0, 8) // <-- si no se proporciona shortUrl(no esta registrado el usuario) -> generar un shortUrl por defecto
 
@@ -29,6 +31,7 @@ const createLinkController = async (req, res) => {
     res.status(201).json({
       message: 'Link created successfully',
       link: data[0].short_url,
+      userId: finalUserId,
     })
   } catch (error) {
     res.status(500).json({ message: 'Error creating link: ' + error.message })
@@ -37,7 +40,7 @@ const createLinkController = async (req, res) => {
 
 // Recuperar enlaces de un usuario
 const getLinksByUserIdController = async (req, res) => {
-  const userId = req.user.id
+  const userId = req.userId
 
   try {
     const links = await getLinksByUserId(userId)
@@ -51,10 +54,10 @@ const getLinksByUserIdController = async (req, res) => {
 const updateLinkController = async (req, res) => {
   const { linkId } = req.params
   const { newShortUrl } = req.body
+  const authenticatedUserId = req.userId
 
   // Formato del shortlink
   const shortUrlPattern = /^[a-zA-Z0-9\-]+$/
-
 
   if (!shortUrlPattern.test(newShortUrl)) {
     return res.status(400).json({
@@ -64,8 +67,29 @@ const updateLinkController = async (req, res) => {
   }
 
   try {
+    const {data, error} = await supabase
+      .from('links')
+      .select('user_id')
+      .eq('id', linkId)
+      .single()
+
+      if (error || !data) {
+        return res.status(404).json({ message: 'Link not found' })
+      }
+
+      if(data.user_id !== authenticatedUserId){
+        return res.status(403).json({
+          message: "You don't have permission to edit this link."
+        })
+      }
+
     const updatedLink = await updateLink(linkId, newShortUrl)
-    res.status(200).json({ original_url: updatedLink.original_url, short_url: updatedLink.short_url})
+    res
+      .status(200)
+      .json({
+        original_url: updatedLink.original_url,
+        short_url: updatedLink.short_url,
+      })
   } catch (error) {
     res.status(500).json({ message: 'Error updating link: ' + error.message })
   }
@@ -90,7 +114,7 @@ const redirectLinkController = async (req, res) => {
   try {
     const originalUrl = await redirectLink(shortUrl)
 
-    if(!originalUrl){
+    if (!originalUrl) {
       res.status(404).send('Redirection not found') //!!<- Aqui ira la pagina HTML de error!!
     }
 
