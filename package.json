@@ -1,14 +1,15 @@
 {
   "name": "link-shortener",
   "version": "1.0.0",
-  "description": "link shortener",
+  "description": "Link Shortener Project",
   "type": "module",
+  "private": true,
   "scripts": {
-    "dev": "nodemon backend/src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "devfront": "pnpm --filter frontend dev",
+    "devback": "pnpm --filter backend dev"
   },
   "keywords": [],
-  "author": "",
+  "author": "BeruzDev",
   "license": "ISC",
   "packageManager": "pnpm@10.6.5",
   "dependencies": {
