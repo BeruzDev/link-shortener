@@ -9,7 +9,7 @@ const InputLink = () => {
 				id='link'
 				// value={value}
 				// onChange={onChange}
-				placeholder='Enter your link'
+				placeholder='your.link'
 				required
 			/>
 		</div>

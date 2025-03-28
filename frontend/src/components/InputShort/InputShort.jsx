@@ -10,7 +10,7 @@ const InputShort = () => {
 				id='short'
 				// value={value}
 				// onChange={onChange}
-				placeholder='Enter your shortcut'
+				placeholder='/shortcut'
 				required
 			/>
 		</div>
