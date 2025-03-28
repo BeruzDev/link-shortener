@@ -1,0 +1,30 @@
+@font-face{
+	font-family: 'bukhari';
+	src: url('../../assets/fonts/BukhariScript.ttf');
+}
+
+#home{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+
+	#title{
+		color: var(--primary-font);
+		font-family: 'bukhari';
+		font-size: 60px;
+		margin-bottom: 20px;
+	}
+
+	#subtitle{
+		font-size: 20px;
+		color: var(--secondary-font);
+	}
+
+	#crafter{
+		display: flex;
+		flex-direction: row;
+		margin: 20px 0;
+	}
+}

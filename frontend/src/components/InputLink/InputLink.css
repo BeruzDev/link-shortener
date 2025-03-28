@@ -1,0 +1,8 @@
+.input-group{
+	margin: 0 20px;
+
+	#link{
+		padding: 10px;
+		border-radius: 50px;
+	}
+}
