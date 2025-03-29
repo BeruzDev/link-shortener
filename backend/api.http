@@ -26,7 +26,8 @@ POST http://localhost:5000/links/
 Content-Type: application/json
 
 {
-  "originalUrl": "https://github.com/BeruzDev"
+  "originalUrl": "https://albertcastroportfolio.netlify.app/",
+  "shortUrl": "portfolio"
 }
 
 ### Crear un nuevo enlace acortado CON usuario registrado
