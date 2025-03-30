@@ -1,0 +1,45 @@
+#toast{
+	z-index: 999;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	column-gap: 10px;
+	bottom: 0;
+	right: 0;
+	margin: 40px 10px;
+	border-radius: 12px;
+	height: 50px;
+	width: 250px;
+	background-color: var(--component-base);
+
+	.toast-icon{
+		font-size: 20px;
+		display: flex;
+	}
+
+	.toast-message{
+		font-size: 16px;
+		color: var(--primary-font);
+	}
+
+	.success-icon{
+		color: var(--success);
+	}
+
+	.error-icon{
+color: var(--error);
+	}
+
+  .delete-icon{
+color: var(--delete);
+  }
+
+	.update-icon{
+	color: var(--detail-1);
+	}
+
+	.unknown-icon{
+		color: var(--detail-2);
+	} 
+}

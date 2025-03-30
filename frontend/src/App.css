@@ -1,10 +1,14 @@
 :root {
   --root-base: #111111;
   --component-base: #1e1e1e;
+  --opacity-base: rgba(30, 30, 30, 0.7);
   --primary-font: #e1e1e1;
   --secondary-font: #a1a1a1;
   --detail-1: #c38fff;
   --detail-2: #03dac6;
+  --success: #49bb64;
+  --error: #e45050; 
+  --delete: #f06d6a; 
 }
 
 * {

@@ -1,15 +1,16 @@
 import React from 'react'
 import './InputShort.css'
 
-const InputShort = () => {
+const InputShort = ({name, value, onChange}) => {
 	return (
 		<div>
 			<div className='input-group'>
 			<input
 				type='text'
 				id='short'
-				// value={value}
-				// onChange={onChange}
+				name={name}
+				value={value}
+				onChange={onChange}
 				placeholder='/shortcut'
 				required
 			/>

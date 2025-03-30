@@ -48,6 +48,14 @@
 	transition: transform 0.3s ease, color 0.3s ease, background-color 0.3s ease;
 }
 
+.button-copy{
+  color: var(--primary-font);
+}
+
+.button-copy:hover{
+
+}
+
 @keyframes shake {
   0% { transform: translateX(0); }
   25% { transform: translateX(-2px); }
