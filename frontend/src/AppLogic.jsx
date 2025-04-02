@@ -53,9 +53,9 @@ export const useAppLogic = () => {
 		setClassIcon(classIcon)
     setConfirmAdvice(true)
 
-    // setTimeout(() => {
-    //   setConfirmAdvice(false)
-    // }, 3000)
+    setTimeout(() => {
+      setConfirmAdvice(false)
+    }, 6000)
   }
 
   return {
