@@ -6,17 +6,17 @@ Content-Type: application/json
 
 {
   "email": "albertus1291@gmail.com",
-  "password": "1234"
+  "password": "12345678910"
 }
 
 
 ### Logear usuario
-POST http://localhost:5000/authlogin/
+POST http://localhost:5000/auth/login/
 Content-Type: application/json
 
 {
   "email": "albertus1291@gmail.com",
-  "password": "1234"
+  "password": "12345678910"
 }
 
 # LINK ROUTES
@@ -26,8 +26,8 @@ POST http://localhost:5000/links/
 Content-Type: application/json
 
 {
-  "originalUrl": "https://albertcastroportfolio.netlify.app/",
-  "shortUrl": "portfolio"
+  "originalUrl": "www.testing.com",
+  "shortUrl": "prueba"
 }
 
 ### Crear un nuevo enlace acortado CON usuario registrado
@@ -37,32 +37,32 @@ Content-Type: application/json
 {
   "originalUrl": "https://github.com/BeruzDev",
   "shortUrl": "github",
-  "userId": "c472618d-0310-4a93-b282-222f9643cfa8"
+  "userId": "e048d056-3f3e-4ba8-a13d-0570367d9123"
 }
 
 ### Recuperar links del usuario
 GET http://localhost:5000/links/my-links
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDcyNjE4ZC0wMzEwLTRhOTMtYjI4Mi0yMjJmOTY0M2NmYTgiLCJpYXQiOjE3NDMwOTg0MTUsImV4cCI6MTc0MzEwMjAxNX0.XcOyuM5tH7UNKhMfMMDGxe8lxlkd4vtRsBbm0Y6Pm-k
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlMDQ4ZDA1Ni0zZjNlLTRiYTgtYTEzZC0wNTcwMzY3ZDkxMjMiLCJpYXQiOjE3NDQyMDAzOTksImV4cCI6MTc0NDIwMzk5OX0.UHXb0LEJljwHv0q8Rhaba3wTiNIYZv_olzqg8C9UZjQ
 
 {
-  "userId": "c472618d-0310-4a93-b282-222f9643cfa8"
+  "userId": "e048d056-3f3e-4ba8-a13d-0570367d9123"
 }
 
 ### Modificar el endpoint
-PUT http://localhost:5000/links/6a3461e5-83c4-428d-98fa-7863b074cbb6
+PUT http://localhost:5000/links/92a5693b-99aa-4672-8089-39192310d1e4
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDcyNjE4ZC0wMzEwLTRhOTMtYjI4Mi0yMjJmOTY0M2NmYTgiLCJpYXQiOjE3NDMwOTg0MTUsImV4cCI6MTc0MzEwMjAxNX0.XcOyuM5tH7UNKhMfMMDGxe8lxlkd4vtRsBbm0Y6Pm-k
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlMDQ4ZDA1Ni0zZjNlLTRiYTgtYTEzZC0wNTcwMzY3ZDkxMjMiLCJpYXQiOjE3NDQyMDAzOTksImV4cCI6MTc0NDIwMzk5OX0.UHXb0LEJljwHv0q8Rhaba3wTiNIYZv_olzqg8C9UZjQ
 
 {
-  "linkId": "6a3461e5-83c4-428d-98fa-7863b074cbb6",
-  "newShortUrl": "github"
+  "linkId": "92a5693b-99aa-4672-8089-39192310d1e4",
+  "newShortUrl": "githubBeruzDev"
 }
 
 ### Eliminar link
-DELETE http://localhost:5000/links/6a3461e5-83c4-428d-98fa-7863b074cbb6
+DELETE http://localhost:5000/links/92a5693b-99aa-4672-8089-39192310d1e4
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNDcyNjE4ZC0wMzEwLTRhOTMtYjI4Mi0yMjJmOTY0M2NmYTgiLCJpYXQiOjE3NDMwOTg0MTUsImV4cCI6MTc0MzEwMjAxNX0.XcOyuM5tH7UNKhMfMMDGxe8lxlkd4vtRsBbm0Y6Pm-k
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlMDQ4ZDA1Ni0zZjNlLTRiYTgtYTEzZC0wNTcwMzY3ZDkxMjMiLCJpYXQiOjE3NDQyMDAzOTksImV4cCI6MTc0NDIwMzk5OX0.UHXb0LEJljwHv0q8Rhaba3wTiNIYZv_olzqg8C9UZjQ
 
 ### Redireccion con el enlace proporcionado
 GET http://localhost:5000/github
