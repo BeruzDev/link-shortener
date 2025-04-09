@@ -36,9 +36,6 @@ const Home = ({ feedToast }) => {
           onChange={getInputElement}
         />
       </div>
-      <footer id="footer">
-        <p>BeruzDev</p>
-      </footer>
     </div>
   )
 }

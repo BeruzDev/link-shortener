@@ -1,12 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { useMemo } from 'react'
 import { useAppLogic } from './AppLogic.jsx'
 import './App.css'
 import Navbar from './components/Navbar/Navbar.jsx'
 import Home from './pages/Home/Home.jsx'
-import Login from './pages/Login/Login.jsx'
-import Register from './pages/Register/Register.jsx'
 import Toast from './components/Toast/Toast.jsx'
+import LogModal from './components/LogModal/LogModal.jsx'
 
 function App() {
   const { confirmAdvice, message, icon, classIcon, feedToast } = useAppLogic()
@@ -18,8 +16,6 @@ function App() {
           <Routes>
             {/* Rutas de la app */}
             <Route path="/" element={<Home feedToast={feedToast} />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
           </Routes>
         </Router>
         {confirmAdvice && (
@@ -30,6 +26,10 @@ function App() {
             confirmAdvice={confirmAdvice}
           />
         )}
+        <LogModal />
+        <footer id="footer">
+        <p>BeruzDev</p>
+      </footer>
       </div>
   )
 }
