@@ -1,5 +1,4 @@
 import { createUser, signInUser } from '../models/User.js'
-import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 dotenv.config()

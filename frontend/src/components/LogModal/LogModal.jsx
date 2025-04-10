@@ -1,21 +1,41 @@
 import React from 'react'
 import './LogModal.css'
+import Button from '../Button/Button.jsx'
+import logo from '../../assets/logos/logo.png'
+import { FcGoogle } from 'react-icons/fc'
+import { BsGithub } from 'react-icons/bs'
+import { useLogModal } from './LogModalLogic.js'
 
-const LogModal = () => {
-	return (
-		<div id='log'>
-			<div id='log-cont'>
-				<h2 id='title-log'>Log in to Link Craft</h2>
-				<p id='text-log'>Log in with your favourite social provider to get started:</p>
-				<button id='google'>
-					
-				</button>
-				<button id='github'>
+const LogModal = ({ isVisible, feedToast }) => {
+  const { loading, handleGoogleLogin, handleGitHubLogin } = useLogModal(feedToast)
 
-				</button>
-			</div>
-		</div>
-	)
+  return (
+    <div id="log" className={isVisible ? 'visible' : 'hidden'}>
+      <div id="log-cont">
+        <img id="logo" src={logo} alt="Log in logo" />
+        <h2 id="title-log">Log in to Link Craft</h2>
+        <p id="text-log">
+          Log in with your favourite social provider to get started:
+        </p>
+        <Button 
+					className="login-button" 
+					Icon={FcGoogle}
+					onClick={handleGoogleLogin}
+					disabled={loading}
+				>
+          {loading ? 'Logging in with Google...' : 'Continue with Google'}
+        </Button>
+        <Button 
+					className="login-button" 
+					Icon={BsGithub}
+					onClick={handleGitHubLogin}
+					disabled={loading}
+				>
+          {loading ? 'Logging in with GitHub...' : 'Continue with GitHub'}
+        </Button>
+      </div>
+    </div>
+  )
 }
 
 export default LogModal

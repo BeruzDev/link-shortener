@@ -10,6 +10,7 @@ export const useAppLogic = () => {
   const [icon, setIcon] = useState(null)
   const [message, setMessage] = useState('')
   const [classIcon, setClassIcon] = useState('')
+  const [isLogModalOpen, setIsLogModalOpen] = useState(false);
 
   const getToastMessage = (type) => {
     switch (type) {
@@ -58,11 +59,17 @@ export const useAppLogic = () => {
     }, 6000)
   }
 
+  const toggleLogModal = () => {
+    setIsLogModalOpen(prev => !prev) //!! <- poner TRUE cuando termine el logeo
+  }
+
   return {
     confirmAdvice,
     message,
     icon,
 		classIcon,
     feedToast,
+    isLogModalOpen,
+    toggleLogModal,
   }
 }
