@@ -6,4 +6,29 @@
 	align-items: center;
 	justify-content: center;
 	height: 100vh;
+	margin: 55px 0;
+	background-color: var(--opacity-base);
+	/* box-shadow: 0 0 0 0.2px var(--secondary-font); */
+
+	.nav-links{
+		width: 100%;
+		display: flex;
+		padding: 10px 10px 0;
+		box-shadow: 0 0 0 0.2px var(--secondary-font);
+	}
+
+	.links-container{
+		height: 100%;
+		width: 100%;
+	}
+}
+
+@media (min-width: 1500px) {
+	#dashboard .nav-links{
+		padding: 10px 250px 0;
+	}
+
+	#dashboard .links-container{
+		padding: 0 250px;
+	}
 }

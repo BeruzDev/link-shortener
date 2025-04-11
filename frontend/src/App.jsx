@@ -8,31 +8,40 @@ import Toast from './components/Toast/Toast.jsx'
 import LogModal from './components/LogModal/LogModal.jsx'
 
 function App() {
-  const { confirmAdvice, message, icon, classIcon, feedToast, toggleLogModal, isLogModalOpen } = useAppLogic()
+  const {
+    confirmAdvice,
+    message,
+    icon,
+    classIcon,
+    feedToast,
+    toggleLogModal,
+    isLogModalOpen,
+    logoutSession,
+  } = useAppLogic()
 
   return (
-      <div className="app-container">
-        <Router>
-          <Navbar onOpenModal={toggleLogModal}/>
-          <Routes>
-            {/* Rutas de la app */}
-            <Route path="/" element={<Home feedToast={feedToast} />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-          </Routes>
-          <LogModal isVisible={isLogModalOpen} feedToast={feedToast}/>
-        </Router>
-        {confirmAdvice && (
-          <Toast
-            message={message}
-            icon={icon}
-            classIcon={classIcon}
-            confirmAdvice={confirmAdvice}
-          />
-        )}
-        <footer id="footer">
+    <div className="app-container">
+      <Navbar onOpenModal={toggleLogModal} logoutSession={logoutSession} />
+      
+      <Routes>
+        {/* Rutas de la app */}
+        <Route path="/" element={<Home feedToast={feedToast} />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+
+      <LogModal isVisible={isLogModalOpen} feedToast={feedToast} />
+      {confirmAdvice && (
+        <Toast
+          message={message}
+          icon={icon}
+          classIcon={classIcon}
+          confirmAdvice={confirmAdvice}
+        />
+      )}
+      <footer id="footer">
         <p>BeruzDev</p>
       </footer>
-      </div>
+    </div>
   )
 }
 

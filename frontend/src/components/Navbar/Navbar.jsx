@@ -1,19 +1,29 @@
 import React from 'react'
 import './Navbar.css'
+import {useNavBar} from './NavBarLogic.js'
 import Button from '../Button/Button.jsx'
 import { BsGithub } from "react-icons/bs"
 import { FaArrowRightLong } from "react-icons/fa6";
+import { IoLogOutOutline } from "react-icons/io5";
 
-const Navbar = ({ onOpenModal }) => {
+const Navbar = ({ onOpenModal, logoutSession }) => {
+	const { isDashboard } = useNavBar()
+
 	return (
 		<nav id='navbar'>
 			<p id='logo'>Link Craft</p>
 			<div className='btn-zone'>
 			<Button className="navbar-button" Icon={BsGithub} onClick={() => window.open('https://github.com/BeruzDev/link-shortener',  '_blank', 'noopener,noreferrer')} />
 
-			<Button className="get-started" Icon={FaArrowRightLong} onClick={onOpenModal}>
-				Get Started
-			</Button>
+			{!isDashboard ? (
+				<Button className="get-started" Icon={FaArrowRightLong} onClick={onOpenModal}>
+					Get Started
+				</Button>
+			) : (
+				<Button className="logout" Icon={IoLogOutOutline} onClick={logoutSession}>
+					Logout
+				</Button>
+			)}
 			</div>
 		</nav>
 	)

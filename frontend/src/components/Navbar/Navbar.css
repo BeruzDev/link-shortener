@@ -28,3 +28,9 @@
 	}
 
 }
+
+@media (min-width: 1500px) {
+	#navbar{
+		padding: 10px 250px;
+	}
+}

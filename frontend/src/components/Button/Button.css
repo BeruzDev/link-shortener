@@ -43,6 +43,25 @@
 	animation: shake 0.5s ease-in-out
 }
 
+.logout{
+  color: var(--secondary-font);
+  border: 1px solid var(--detail-1);
+  flex-direction: row-reverse;
+  border-radius: 5px;
+  padding: 8px;
+  gap: 5px;
+
+  .icon{
+    font-size: 20px;
+  }
+}
+
+.logout:hover{
+  cursor: pointer;
+  border-color: var(--detail-2);
+	animation: shake 0.5s ease-in-out
+}
+
 .button-text {
   font-family: system-ui;
 	font-weight: 600;
@@ -70,6 +89,29 @@
 .login-button:hover{
   background-color: var(--component-base);
   cursor: pointer;
+}
+
+.windows{
+  border-radius: 0;
+  padding: 10px;
+  display: flex;
+  gap: 8px;
+  color: var(--secondary-font);
+
+  .icon{
+    font-size: 20px;
+    transition: transform 0.3s ease, color 0.3s ease, background-color 0.3s ease;
+  }
+}
+
+.windows:hover{
+  cursor: pointer;
+  color: var(--primary-font);
+}
+
+.windows:hover .icon{
+  transform: rotate(30deg) scale(1.1);
+  color: var(--detail-1);
 }
 
 @keyframes shake {

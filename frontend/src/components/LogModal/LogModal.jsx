@@ -23,7 +23,7 @@ const LogModal = ({ isVisible, feedToast }) => {
 					onClick={handleGoogleLogin}
 					disabled={loading}
 				>
-          {loading ? 'Logging in with Google...' : 'Continue with Google'}
+          {loading ? 'Logging in...' : 'Continue with Google'}
         </Button>
         <Button 
 					className="login-button" 
@@ -31,7 +31,7 @@ const LogModal = ({ isVisible, feedToast }) => {
 					onClick={handleGitHubLogin}
 					disabled={loading}
 				>
-          {loading ? 'Logging in with GitHub...' : 'Continue with GitHub'}
+          {loading ? 'Logging in...' : 'Continue with GitHub'}
         </Button>
       </div>
     </div>

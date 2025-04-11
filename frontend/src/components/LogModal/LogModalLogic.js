@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { supabase } from '../../config/supabase.js'	
+import { redirectUrl } from '../../config/supabase.js'
 import { useNavigate } from 'react-router-dom'
 
 export const useLogModal = (feedToast) => {
@@ -11,6 +12,9 @@ export const useLogModal = (feedToast) => {
       setLoading(true)
       const { user, session, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
+        options: {
+          redirectTo: redirectUrl,
+        }
       })
 
 			console.log('user:', user)
@@ -35,6 +39,9 @@ export const useLogModal = (feedToast) => {
       setLoading(true)
       const { user, session, error } = await supabase.auth.signInWithOAuth({
         provider: 'github',
+        options: {
+          redirectTo: redirectUrl,
+        }
       })
 
 			console.log('user:', user)
