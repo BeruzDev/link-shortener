@@ -26,7 +26,7 @@ function App() {
       <Routes>
         {/* Rutas de la app */}
         <Route path="/" element={<Home feedToast={feedToast} />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard feedToast={feedToast}/>} />
       </Routes>
 
       <LogModal isVisible={isLogModalOpen} feedToast={feedToast} />

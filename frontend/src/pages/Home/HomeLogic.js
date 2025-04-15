@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import callToBackend from '../../config/config'
+import callToBackend from '../../config/config.js'
 
 export const useHomeLogic = (feedToast) => {
   const [linkData, setLinkData] = useState({ originalUrl: '', shortUrl: '' })
@@ -16,7 +16,7 @@ export const useHomeLogic = (feedToast) => {
     const { originalUrl, shortUrl } = linkData
 
     if (!originalUrl || !shortUrl) {
-      alert('Both fields are required!')
+      feedToast('both')
       return
     }
 

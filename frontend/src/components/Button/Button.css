@@ -25,7 +25,7 @@
 .navbar-button:hover {
   cursor: pointer;
   color: var(--detail-2);
-  transform: rotate(30deg) scale(1.1);
+  animation: shake 0.5s ease-in-out
 }
 
 .get-started {
@@ -107,12 +107,52 @@
 .windows:hover{
   cursor: pointer;
   color: var(--primary-font);
+  
 }
 
 .windows:hover .icon{
-  transform: rotate(30deg) scale(1.1);
-  color: var(--detail-1);
+  transform: rotate(180deg) scale(1.1);
+  color: var(--detail-2);
 }
+
+.windows:hover .button-text{
+  transform: scale(1.1);
+}
+
+.active-button {
+  color: var(--primary-font);
+  
+  .icon{
+    color: var(--detail-1);
+  }
+}
+
+.create-link{
+  height: 36px ;
+  border-radius: 5px;
+  padding: 0 10px;
+  display: flex;
+  gap: 8px;
+  color: var(--primary-font);
+  background-color: var(--component-base);
+  font-size: 14px;
+
+  .icon{
+    color: var(--detail-1);
+    transition: transform 0.3s ease, color 0.3s ease, background-color 0.3s ease;
+  }
+}
+
+.create-link:hover{
+  cursor: pointer;
+  /* background-color: var(--opacity-base); */
+}
+
+.create-link:hover .icon{
+  transform: rotate(180deg) scale(1.1);
+  color: var(--detail-2);
+}
+
 
 @keyframes shake {
   0% { transform: translateX(0); }

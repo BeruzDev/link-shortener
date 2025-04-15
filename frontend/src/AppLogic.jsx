@@ -33,6 +33,12 @@ export const useAppLogic = () => {
           message: 'Something go wrong!',
           classIcon: 'error-icon',
         }
+      case 'both':
+        return {
+          icon: <FaXmark />,
+          message: 'Both fields are required!',
+          classIcon: 'error-icon',
+        }
       case 'delete':
         return {
           icon: <MdDeleteForever />,
