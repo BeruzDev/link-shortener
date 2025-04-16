@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <Navbar onOpenModal={toggleLogModal} logoutSession={logoutSession} />
+      <Navbar onOpenModal={toggleLogModal} logoutSession={logoutSession}/>
       
       <Routes>
         {/* Rutas de la app */}

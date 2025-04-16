@@ -176,6 +176,50 @@
   color: var(--detail-1);
 }
 
+.create-shortLink{
+  height: 36px ;
+  border-radius: 5px;
+  padding: 0 10px;
+  display: flex;
+  gap: 8px;
+  color: var(--primary-font);
+  background-color: var(--component-base);
+  font-size: 14px;
+
+  .icon{
+    color: var(--detail-1);
+    transition: transform 0.6s ease, color 0.6s ease, background-color 0.6s ease;
+  }
+}
+
+.create-shortLink:hover{
+  cursor: pointer;
+}
+
+.create-shortLink:hover .icon{
+  transform: rotate(360deg) scale(1.1);
+  color: var(--detail-2);
+}
+
+.create-shortLink .icon:focus{
+  background-color: var(--opacity-base);
+}
+
+
+.cancel{
+  height: 36px ;
+  border-radius: 5px;
+  padding: 0 10px;
+  display: flex;
+  gap: 8px;
+  color: var(--primary-font);
+  font-size: 14px;
+}
+
+.cancel:hover{
+  cursor: pointer;
+  background-color: var(--component-base);
+}
 
 @keyframes shake {
   0% { transform: translateX(0); }

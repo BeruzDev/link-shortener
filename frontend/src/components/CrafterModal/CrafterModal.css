@@ -15,7 +15,7 @@
 		box-shadow: 0 0 0 0.2px var(--secondary-font);
 		border-radius: 10px;
 		width: 450px;
-		height: 450px;
+		height: auto;
 		padding: 10px;
 
 		.header{
@@ -42,7 +42,7 @@
 		.input-section{
 			width: 100%;
 			height: 200px;
-			padding: 25px 15px 15px;
+			padding: 25px 15px 0 15px;
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
@@ -72,7 +72,12 @@
 					text-align: start;
 				}
 			}
+		}
 
+		.buttons-section{
+			display: flex;
+			justify-content: flex-end;
+			padding: 25px 15px 15px;
 		}
 	}
 }

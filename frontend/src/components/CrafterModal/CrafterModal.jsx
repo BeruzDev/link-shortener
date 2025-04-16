@@ -4,6 +4,7 @@ import Button from '../Button/Button.jsx'
 import InputLink from '../InputLink/InputLink.jsx'
 import InputShort from '../InputShort/InputShort.jsx'
 import { IoIosClose } from "react-icons/io"
+import { LuRocket } from "react-icons/lu";
 
 const CrafterModal = ({ isVisible, onCloseCrafterModal, feedToast }) => {
   return (
@@ -24,6 +25,14 @@ const CrafterModal = ({ isVisible, onCloseCrafterModal, feedToast }) => {
 						<label className='labels'>Short link:</label>
 						<InputShort className={'inputs'}/>
 					</div>
+				</div>
+				<div className='buttons-section'>
+					<Button className='cancel' onClick={onCloseCrafterModal}>
+						Cancel
+					</Button>
+					<Button className='create-shortLink' Icon={LuRocket}>
+						Create
+					</Button>
 				</div>
 			</div>
     </div>
