@@ -13,6 +13,7 @@ export const useAppLogic = () => {
   const [message, setMessage] = useState('')
   const [classIcon, setClassIcon] = useState('')
   const [isLogModalOpen, setIsLogModalOpen] = useState(false)
+  const [isCrafterModalOpen, setIsCrafterModalOpen] = useState(false);
   const [userSession, setUserSession] = useState({
     userId: null,
     accessToken: null,
@@ -76,6 +77,15 @@ export const useAppLogic = () => {
     setIsLogModalOpen(true)
   }
 
+  const onOpenCrafterModal = () => {
+		setIsCrafterModalOpen(true)
+    
+	}
+
+  const onCloseCrafterModal = () => {
+    setIsCrafterModalOpen(false)
+  }
+
   const logoutSession = async () => {
     const { error } = await supabase.auth.signOut()
 
@@ -128,9 +138,12 @@ export const useAppLogic = () => {
     icon,
     classIcon,
     isLogModalOpen,
+		isCrafterModalOpen,
     userSession,
     feedToast,
     toggleLogModal,
+    onOpenCrafterModal,
+    onCloseCrafterModal,
     logoutSession,
   }
 }

@@ -13,10 +13,6 @@ export const useLinksLogic = (feedToast) => {
     }))
   }
 
-	const onOpenCrafterModal = () => {
-		console.log('openModal!!')
-	}
-
 	const createLinkButton = async () => {
 		const {originalUrl, shortUrl, userId} = linkDataUser
 
@@ -30,7 +26,6 @@ export const useLinksLogic = (feedToast) => {
 		linkDataUser,
 		linkToSearch,
 		getInputElement,
-		onOpenCrafterModal,
 		createLinkButton,
 	}
 }

@@ -5,12 +5,11 @@ import InpuntSearch from '../../../../components/InputSearch/InpuntSearch.jsx'
 import Button from '../../../../components/Button/Button.jsx'
 import { FaPlus } from 'react-icons/fa6'
 
-const Links = ({ feedToast }) => {
+const Links = ({ onOpenCrafterModal, feedToast }) => {
   const {
     linkDataUser,
     linkToSearch,
     getInputElement,
-    onOpenCrafterModal,
     createLinkButton,
   } = useLinksLogic(feedToast)
 
@@ -25,7 +24,7 @@ const Links = ({ feedToast }) => {
         <Button
           className="create-link"
           Icon={FaPlus}
-          onClick={onOpenCrafterModal}//!!<- Crear el modal!
+          onClick={onOpenCrafterModal}
         >
           Create Link
         </Button>

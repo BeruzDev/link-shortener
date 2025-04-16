@@ -6,6 +6,7 @@ import Home from './pages/Home/Home.jsx'
 import Dashboard from './pages/Dashboard/Dashboard.jsx'
 import Toast from './components/Toast/Toast.jsx'
 import LogModal from './components/LogModal/LogModal.jsx'
+import CrafterModal from './components/CrafterModal/CrafterModal.jsx'
 
 function App() {
   const {
@@ -16,6 +17,9 @@ function App() {
     feedToast,
     toggleLogModal,
     isLogModalOpen,
+		isCrafterModalOpen,
+    onOpenCrafterModal,
+    onCloseCrafterModal,
     logoutSession,
   } = useAppLogic()
 
@@ -26,10 +30,13 @@ function App() {
       <Routes>
         {/* Rutas de la app */}
         <Route path="/" element={<Home feedToast={feedToast} />} />
-        <Route path="/dashboard" element={<Dashboard feedToast={feedToast}/>} />
+        <Route path="/dashboard" element={<Dashboard onOpenCrafterModal={onOpenCrafterModal} feedToast={feedToast}/>} />
       </Routes>
 
       <LogModal isVisible={isLogModalOpen} feedToast={feedToast} />
+
+      <CrafterModal isVisible={isCrafterModalOpen} onCloseCrafterModal={onCloseCrafterModal} feedToast={feedToast}/>
+      
       {confirmAdvice && (
         <Toast
           message={message}

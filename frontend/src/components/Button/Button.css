@@ -11,6 +11,7 @@
 
 .crafter-button {
   font-size: 30px;
+  margin: 0 20px;
 }
 .crafter-button:hover {
   cursor: pointer;
@@ -151,6 +152,28 @@
 .create-link:hover .icon{
   transform: rotate(180deg) scale(1.1);
   color: var(--detail-2);
+}
+
+.create-link .icon:active{
+  color: var(--detail-1);
+}
+
+.close{
+  font-size: 30px;
+  display: flex;
+  align-items: flex-start;
+  margin: 0;
+  color: var(--secondary-font);
+}
+
+.close:hover{
+  cursor: pointer;
+  transform: rotate(180deg) scale(1.1);
+  color: var(--detail-2);
+}
+
+.close .icon:active{
+  color: var(--detail-1);
 }
 
 

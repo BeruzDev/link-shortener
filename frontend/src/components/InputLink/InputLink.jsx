@@ -1,16 +1,17 @@
 import React from 'react'
 import './InputLink.css'
 
-const InputLink = ({name, value, onChange }) => {
+const InputLink = ({name, value, onChange, className }) => {
 	return (
 		<div className='input-group'>
 			<input
 				type='url'
 				id='link'
+				className={className}
 				name={name}
 				value={value}
 				onChange={onChange}
-				placeholder='your.link'
+				placeholder='https://'
 				required
 			/>
 		</div>
