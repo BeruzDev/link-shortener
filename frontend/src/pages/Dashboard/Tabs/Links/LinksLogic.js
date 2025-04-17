@@ -1,31 +1,52 @@
-import { useState } from "react"
+import { useState } from 'react'
 import callToBackend from '../../../../config/config.js'
 
-export const useLinksLogic = (feedToast) => {
-	const [linkDataUser, setlinkDataUser] = useState({ originalUrl: '', shortUrl: '', userId: ''});
-	const [linkToSearch, setLinkToSearch] = useState({ findShortUrl: ''});
+export const useLinksLogic = (feedToast, userSession) => {
+  const [linkDataUser, setlinkDataUser] = useState({
+    originalUrl: '',
+    shortUrl: '',
+    userId: '',
+  })
+  const [linkToSearch, setLinkToSearch] = useState({ findShortUrl: '' })
 
-	const getInputElement = (element) => {
+  const getSearchInputElement = (element) => {
     const { name, value } = element.target
     setLinkToSearch((prevState) => ({
       ...prevState,
       [name]: value,
     }))
+    console.log(linkToSearch)
   }
 
-	const createLinkButton = async () => {
-		const {originalUrl, shortUrl, userId} = linkDataUser
+  const getCreateInputElement = (element) => {
+    const { name, value } = element.target
+    console.log(linkDataUser)
+    setlinkDataUser((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }))
+  }
 
-		if (!originalUrl || !shortUrl || !userId){
-			feedToast('both')
+  const createButton = async () => {
+    const { originalUrl, shortUrl, userId } = linkDataUser
+    const updatedLinkData = {...linkDataUser, userId: userSession.userId}
+
+    console.log(updatedLinkData)
+
+    if (!originalUrl || !shortUrl) {
+      feedToast('both')
+      return
+    }else{
+			feedToast('success')
 			return
 		}
-	}
+  }
 
-	return {
-		linkDataUser,
-		linkToSearch,
-		getInputElement,
-		createLinkButton,
-	}
+  return {
+    linkDataUser,
+    linkToSearch,
+    getSearchInputElement,
+    getCreateInputElement,
+    createButton,
+  }
 }

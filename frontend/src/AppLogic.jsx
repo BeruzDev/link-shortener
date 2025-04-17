@@ -13,7 +13,6 @@ export const useAppLogic = () => {
   const [message, setMessage] = useState('')
   const [classIcon, setClassIcon] = useState('')
   const [isLogModalOpen, setIsLogModalOpen] = useState(false)
-  const [isCrafterModalOpen, setIsCrafterModalOpen] = useState(false);
   const [userSession, setUserSession] = useState({
     userId: null,
     accessToken: null,
@@ -77,15 +76,6 @@ export const useAppLogic = () => {
     setIsLogModalOpen(true)
   }
 
-  const onOpenCrafterModal = () => {
-		setIsCrafterModalOpen(true)
-    
-	}
-
-  const onCloseCrafterModal = () => {
-    setIsCrafterModalOpen(false)
-  }
-
   const logoutSession = async () => {
     const { error } = await supabase.auth.signOut()
 
@@ -102,35 +92,33 @@ export const useAppLogic = () => {
   useEffect(() => {
     const getSessionData = async () => {
       try {
-        const { data, error } = await supabase.auth.getSession();
-        
-        // Verifica si hubo un error en la obtención de la sesión
+        const { data, error } = await supabase.auth.getSession()
+
         if (error) {
-          console.error('Error fetching session:', error.message);
-          return; // Termina la ejecución si hubo un error
+          console.error('Error fetching session:', error.message)
+          return
         }
-  
-        console.log('getSessionData → data:', data);
-        
+
+        console.log('getSessionData → data:', data)
+
         if (data.session) {
           const sessionInfo = {
             userId: data.session.user.id,
             accessToken: data.session.access_token,
-          };
-  
-          setUserSession(sessionInfo);
-          console.log('Session info -> ', sessionInfo);
+          }
+
+          setUserSession(sessionInfo)
+          console.log('Session info -> ', sessionInfo)
         } else {
-          console.log('No session found');
+          console.log('No session found')
         }
       } catch (error) {
-        console.error('Error during session fetch:', error.message);
+        console.error('Error during session fetch:', error.message)
       }
-    };
-  
-    getSessionData();
-  }, []);
-  
+    }
+
+    getSessionData()
+  }, [])
 
   return {
     confirmAdvice,
@@ -138,12 +126,9 @@ export const useAppLogic = () => {
     icon,
     classIcon,
     isLogModalOpen,
-		isCrafterModalOpen,
     userSession,
     feedToast,
     toggleLogModal,
-    onOpenCrafterModal,
-    onCloseCrafterModal,
     logoutSession,
   }
 }

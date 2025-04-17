@@ -208,9 +208,11 @@
 
 .cancel{
   height: 36px ;
+  width: 80px;
   border-radius: 5px;
   padding: 0 10px;
   display: flex;
+  justify-content: center;
   gap: 8px;
   color: var(--primary-font);
   font-size: 14px;

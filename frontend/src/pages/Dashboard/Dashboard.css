@@ -1,4 +1,4 @@
-#dashboard{
+.dashboard{
 	position: relative;
 	z-index: 3;
 	display: flex;
@@ -32,4 +32,8 @@
 	#dashboard #windows-container{
 		padding: 25px 250px;
 	}
+}
+
+.is-modal-open{
+	z-index: 4;
 }

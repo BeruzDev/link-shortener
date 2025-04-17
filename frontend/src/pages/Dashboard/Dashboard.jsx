@@ -5,12 +5,12 @@ import Button from '../../components/Button/Button.jsx'
 import { FaLink } from 'react-icons/fa6'
 import { IoMdSettings } from 'react-icons/io'
 
-const Dashboard = ({ onOpenCrafterModal, onCloseCrafterModal, feedToast }) => {
-  const { activeTab, setActiveTab, tabs } = useDashboard()
+const Dashboard = ({ feedToast, userSession }) => {
+  const { isCrafterModalOpen, onOpenCrafterModal, onCloseCrafterModal ,activeTab, setActiveTab, tabs } = useDashboard()
   const TabComponent = tabs[activeTab]
 
   return (
-    <div id="dashboard">
+    <div className={`dashboard ${isCrafterModalOpen ? 'is-modal-open' : ''}`}>
       <div className="nav-links">
         <Button
           className={`windows ${activeTab === 'links' ? 'active-button' : ''}`}
@@ -31,7 +31,10 @@ const Dashboard = ({ onOpenCrafterModal, onCloseCrafterModal, feedToast }) => {
       </div>
       <div id="windows-container">
         <TabComponent
+          isCrafterModalOpen={isCrafterModalOpen}
           onOpenCrafterModal={onOpenCrafterModal}
+          onCloseCrafterModal={onCloseCrafterModal}
+          userSession={userSession}
           feedToast={feedToast}
         />
       </div>
