@@ -4,7 +4,9 @@ import { useLinksLogic } from './LinksLogic.js'
 import InpuntSearch from '../../../../components/InputSearch/InpuntSearch.jsx'
 import Button from '../../../../components/Button/Button.jsx'
 import CrafterModal from '../../../../components/CrafterModal/CrafterModal.jsx'
+import LinkElement from '../../../../components/LinkElement/LinkElement.jsx'
 import { FaPlus } from 'react-icons/fa6'
+import { Link } from 'react-router-dom'
 
 const Links = ({ isCrafterModalOpen, onOpenCrafterModal, onCloseCrafterModal, feedToast, userSession }) => {
   const {
@@ -13,7 +15,7 @@ const Links = ({ isCrafterModalOpen, onOpenCrafterModal, onCloseCrafterModal, fe
     getSearchInputElement,
     getCreateInputElement,
     createButton,
-  } = useLinksLogic(feedToast, userSession)
+  } = useLinksLogic(feedToast, userSession, onCloseCrafterModal)
 
   return (
     <div id="links-window">
@@ -31,7 +33,11 @@ const Links = ({ isCrafterModalOpen, onOpenCrafterModal, onCloseCrafterModal, fe
           Create Link
         </Button>
       </div>
-      <div className="bento-section"></div>
+      <div className="bento-section">
+        <LinkElement />
+        <LinkElement />
+        <LinkElement />
+      </div>
 
       <CrafterModal 
         linkDataUser={linkDataUser} 

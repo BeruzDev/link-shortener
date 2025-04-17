@@ -10,7 +10,7 @@ const createLink = async (originalUrl, shortUrl, userId) => {
     .select('id, short_url')
 
   if (error) {
-    throw new Error('Error shortening link: ' + error.message)
+    throw error
   }
 
   return data

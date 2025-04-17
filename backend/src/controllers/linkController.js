@@ -14,8 +14,6 @@ const createLinkController = async (req, res) => {
   const finalUserId = userId ?? null
   const generatedShortUrl = shortUrl || uuidv4().slice(0, 8) // Si no se proporciona shortUrl, generamos uno por defecto
 
-  console.log('Controller - createLink:', { originalUrl, generatedShortUrl, finalUserId });
-
   try {
     // Hacemos la inserción
     const data = await createLink(originalUrl, generatedShortUrl, finalUserId)
@@ -34,7 +32,19 @@ const createLinkController = async (req, res) => {
       userId: finalUserId,
     })
   } catch (error) {
-    res.status(500).json({ message: 'Error creating link: ' + error.message })
+    console.error('Supabase error:', error)
+  
+    if (error.code === '23505') {
+      return res.status(409).json({
+        message: 'El shortUrl ya está en uso. Prueba con otro.',
+        code: 'DUPLICATE_SHORTURL',
+      })
+    }
+  
+    res.status(500).json({
+      message: 'Error creando el enlace',
+      detail: error.message,
+    })
   }
 }
 

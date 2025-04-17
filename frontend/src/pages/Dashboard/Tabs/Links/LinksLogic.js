@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import callToBackend from '../../../../config/config.js'
 
-export const useLinksLogic = (feedToast, userSession) => {
+export const useLinksLogic = (feedToast, userSession, onCloseCrafterModal) => {
   const [linkDataUser, setlinkDataUser] = useState({
     originalUrl: '',
     shortUrl: '',
@@ -15,12 +15,10 @@ export const useLinksLogic = (feedToast, userSession) => {
       ...prevState,
       [name]: value,
     }))
-    console.log(linkToSearch)
   }
 
   const getCreateInputElement = (element) => {
     const { name, value } = element.target
-    console.log(linkDataUser)
     setlinkDataUser((prevState) => ({
       ...prevState,
       [name]: value,
@@ -28,18 +26,44 @@ export const useLinksLogic = (feedToast, userSession) => {
   }
 
   const createButton = async () => {
-    const { originalUrl, shortUrl, userId } = linkDataUser
+    const { originalUrl, shortUrl } = linkDataUser
     const updatedLinkData = {...linkDataUser, userId: userSession.userId}
-
-    console.log(updatedLinkData)
 
     if (!originalUrl || !shortUrl) {
       feedToast('both')
       return
-    }else{
-			feedToast('success')
-			return
-		}
+    }
+
+
+    try {
+      const response = await fetch(`${callToBackend}/links/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json', 
+        },
+        body: JSON.stringify(updatedLinkData)
+      })
+
+      if (response.ok){
+        const result = await response.json()
+        feedToast('created')
+        setlinkDataUser({originalUrl: '', shortUrl: '',})
+        
+        setTimeout(() => {
+          onCloseCrafterModal()
+        }, 1000);
+      }else{
+        const errorResponse = await response.json()
+        if (response.status === 409 && errorResponse.code === 'DUPLICATE_SHORTURL') {
+          feedToast('duplicate')
+        }else{
+          feedToast('error')
+        }
+      }
+    } catch (error) {
+      console.error('Error al crear el enlace:', error)
+      feedToast('error')
+    }
   }
 
   return {

@@ -3,7 +3,8 @@ import { FaCheck } from 'react-icons/fa6'
 import { FaXmark } from 'react-icons/fa6'
 import { MdDeleteForever } from 'react-icons/md'
 import { FiEdit } from 'react-icons/fi'
-import { GrStatusUnknown } from 'react-icons/gr'
+import { MdQuestionMark } from "react-icons/md"
+import { HiOutlineDocumentDuplicate } from "react-icons/hi";
 import { useNavigate } from 'react-router-dom'
 import { supabase } from './config/supabase.js'
 
@@ -27,6 +28,18 @@ export const useAppLogic = () => {
           message: 'Copy to clipboard!',
           classIcon: 'success-icon',
         }
+      case 'created':
+        return {
+          icon: <FaCheck />,
+          message: 'Link crafted!',
+          classIcon: 'success-icon',
+        }
+        case 'duplicate':
+          return {
+            icon: <HiOutlineDocumentDuplicate />,
+            message: 'This shortcut is already used',
+            classIcon: 'error-icon',
+          }
       case 'error':
         return {
           icon: <FaXmark />,
@@ -53,7 +66,7 @@ export const useAppLogic = () => {
         }
       default:
         return {
-          icon: <GrStatusUnknown />,
+          icon: <MdQuestionMark />,
           message: 'Unknown action!',
           classIcon: 'unknown-icon',
         }
@@ -83,7 +96,6 @@ export const useAppLogic = () => {
       console.error('Logout error: ', error.message)
       feedToast('error')
     } else {
-      console.log('User signed out successfully')
       setUserSession({ userId: null, accessToken: null })
       navigate('/')
     }
@@ -99,8 +111,6 @@ export const useAppLogic = () => {
           return
         }
 
-        console.log('getSessionData → data:', data)
-
         if (data.session) {
           const sessionInfo = {
             userId: data.session.user.id,
@@ -108,9 +118,6 @@ export const useAppLogic = () => {
           }
 
           setUserSession(sessionInfo)
-          console.log('Session info -> ', sessionInfo)
-        } else {
-          console.log('No session found')
         }
       } catch (error) {
         console.error('Error during session fetch:', error.message)

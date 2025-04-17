@@ -33,7 +33,6 @@ export const useHomeLogic = (feedToast) => {
         const result = await response.json()
         feedToast('success')
       } else {
-        console.error('Create link gone wrong')
         feedToast('error')
       }
     } catch (error) {

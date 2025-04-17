@@ -1,0 +1,23 @@
+#link-element{
+	background-color: var(--opacity-base);
+	margin: 5px;
+	border-radius: 5px;
+	outline: 0;
+	padding: 12px;
+	box-shadow: 0 0 0 0.2px var(--secondary-font);
+	
+	.top-section{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+
+		.short-url{
+			color: var(--primary-font);
+		}
+
+		.buttons-section{
+			width: auto;
+			
+		}
+	}
+}
