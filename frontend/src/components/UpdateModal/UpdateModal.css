@@ -60,7 +60,24 @@
 					color: var(--primary-font);
 				}
 
+				.original-link-locker{
+					position: relative;
+					cursor: default;
+					pointer-events: none;
+
+					.lock-icon{
+						position: absolute;
+						top: 12px;
+						left: 365px;
+					}
+
+					.lock-icon:hover{
+						color: var(--error);
+					}
+				}
+
 				.inputs{
+					position: relative;
 					border-radius: 5px;
 					width: 100%;
 					background-color:  var(--base-component);

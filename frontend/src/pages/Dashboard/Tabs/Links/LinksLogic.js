@@ -7,6 +7,7 @@ export const useLinksLogic = (
   onCloseCrafterModal,
   getUserLinks,
   linkStored,
+  setisAnyModalOpen,
 ) => {
   const [linkDataUser, setlinkDataUser] = useState({
     originalUrl: '',
@@ -19,9 +20,7 @@ export const useLinksLogic = (
     linkId: '',
     originalUrl: '',
     shortUrl: '',
-  });
-
-  console.log('isUpdateModalOpen:', isUpdateModalOpen)
+  })
 
   const getSearchInputElement = (element) => {
     const { name, value } = element.target
@@ -130,21 +129,67 @@ export const useLinksLogic = (
 
   const onOpenUpdateModal = (id) => {
     const selectedLink = linkStored.find((link) => link.id === id)
-    if(selectedLink) {
+    if (selectedLink) {
       setLinkDataUpdate({
+        linkId: selectedLink.id,
         originalUrl: selectedLink.originalUrl,
         shortUrl: selectedLink.shortUrl,
         userId: selectedLink.userId,
       })
-      console.log(linkDataUpdate)
-      console.log(selectedLink)
       setIsUpdateModalOpen(true)
+      setisAnyModalOpen(true)
     }
   }
 
   const onCloseUpdateModal = () => {
-    console.log('close update modal')
     setIsUpdateModalOpen(false)
+    setisAnyModalOpen(false)
+  }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setLinkDataUpdate((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }))
+  }
+
+  const handleUpdateLink = async () => {
+    const { linkId, shortUrl } = linkDataUpdate
+    const { accessToken } = userSession
+
+    if (!linkId){
+      console.error('Link ID is undefined');
+      feedToast('error')
+      return
+    }
+
+    if (!shortUrl) {
+      feedToast('both')
+      return
+    }
+
+    try {
+      const response = await fetch(`${callToBackend}/links/${linkId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify({ newShortUrl: shortUrl }),
+      })
+
+      if (!response.ok) throw new Error("Can't update the link")
+      const data = await response.json()
+      console.log('link updated: ', data)
+
+      feedToast('update')
+      getUserLinks()
+      onCloseUpdateModal()
+    } catch (error) {
+      console.error('Error while updating the link: ', error)
+      feetToast('error')
+    }
   }
 
   return {
@@ -158,6 +203,8 @@ export const useLinksLogic = (
     isUpdateModalOpen,
     onOpenUpdateModal,
     onCloseUpdateModal,
-    linkDataUpdate
+    linkDataUpdate,
+    handleInputChange,
+    handleUpdateLink,
   }
 }

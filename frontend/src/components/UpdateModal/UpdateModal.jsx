@@ -4,14 +4,17 @@ import Button from '../Button/Button.jsx'
 import InputLink from '../InputLink/InputLink.jsx'
 import InputShort from '../InputShort/InputShort.jsx'
 import { IoIosClose } from 'react-icons/io'
-import { LuSave } from "react-icons/lu";
+import { LuSave } from 'react-icons/lu'
+import { FiLock } from 'react-icons/fi'
 
 const UpdateModal = ({
   isVisible,
-	onCloseUpdateModal,
-	id,
-	originalUrl,
-	shortUrl
+  onCloseUpdateModal,
+  id,
+  originalUrl,
+  shortUrl,
+  handleInputChange,
+  handleUpdateLink
 }) => {
   return (
     <div id="update-modal" className={isVisible ? 'visible' : 'hidden'}>
@@ -20,7 +23,7 @@ const UpdateModal = ({
           <p className="header-tittle">Edit link</p>
           <div className="button-cont">
             <Button
-              className={'close'}
+              className="close"
               Icon={IoIosClose}
               onClick={onCloseUpdateModal}
             />
@@ -29,35 +32,34 @@ const UpdateModal = ({
         <div className="input-section">
           <div className="pair-elements">
             <label className="labels">Destination URL:</label>
-            <InputLink
-              className={'inputs'}
-              name="originalUrl"
-              value={originalUrl}
-							readOnly
-              // onChange={}
-            />
+            <div className='original-link-locker'>
+              <InputLink
+                className="inputs locked-input"
+                name="originalUrl"
+                value={originalUrl}
+                readOnly
+              />
+              <FiLock className="lock-icon" />
+            </div>
           </div>
           <div className="pair-elements">
             <label className="labels">Short link:</label>
             <InputShort
-              className={'inputs'}
+              className="inputs"
               name="shortUrl"
               value={shortUrl}
-              // onChange={}
+              onChange={handleInputChange}
             />
           </div>
         </div>
         <div className="buttons-section">
-          <Button 
-						className="cancel" 
-						onClick={onCloseUpdateModal}
-					>
+          <Button className="cancel" onClick={onCloseUpdateModal}>
             Cancel
           </Button>
           <Button
             className="create-shortLink"
             Icon={LuSave}
-            //onClick={}
+            onClick={handleUpdateLink}
           >
             Update
           </Button>

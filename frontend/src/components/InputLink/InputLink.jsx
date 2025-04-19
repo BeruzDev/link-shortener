@@ -1,7 +1,7 @@
 import React from 'react'
 import './InputLink.css'
 
-const InputLink = ({name, value, onChange, className }) => {
+const InputLink = ({name, value, onChange, className, icon }) => {
 	return (
 		<div className='input-group'>
 			<input

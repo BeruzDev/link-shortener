@@ -16,6 +16,7 @@ const Links = ({
   userSession,
   linkStored,
   getUserLinks,
+  setisAnyModalOpen
 }) => {
   const {
     linkDataUser,
@@ -29,10 +30,19 @@ const Links = ({
     onOpenUpdateModal,
     onCloseUpdateModal,
     linkDataUpdate,
-  } = useLinksLogic(feedToast, userSession, onCloseCrafterModal, getUserLinks, linkStored)
+    handleInputChange,
+    handleUpdateLink,
+  } = useLinksLogic(
+    feedToast,
+    userSession,
+    onCloseCrafterModal,
+    getUserLinks,
+    linkStored,
+    setisAnyModalOpen
+  )
 
   return (
-    <div id="links-window">
+    <div className="links-window">
       <div className="buttons-section">
         <InpuntSearch
           name="findShortUrl"
@@ -59,10 +69,11 @@ const Links = ({
               handleCopy={() => handleCopy(link.shortUrl)}
               handleDelete={() => handleDelete(link.id)}
               onOpenUpdateModal={() => onOpenUpdateModal(link.id)}
+              getCreateInputElement={getCreateInputElement}
             />
           ))
         ) : (
-          <p className="no-links-yet">No links yet.</p>
+          ''
         )}
       </div>
 
@@ -78,6 +89,8 @@ const Links = ({
       <UpdateModal
         isVisible={isUpdateModalOpen}
         onCloseUpdateModal={onCloseUpdateModal}
+        handleInputChange={handleInputChange}
+        handleUpdateLink={handleUpdateLink}
         id={linkDataUpdate.id}
         originalUrl={linkDataUpdate.originalUrl}
         shortUrl={linkDataUpdate.shortUrl}

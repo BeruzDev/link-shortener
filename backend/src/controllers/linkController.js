@@ -66,6 +66,10 @@ const updateLinkController = async (req, res) => {
   const { newShortUrl } = req.body
   const authenticatedUserId = req.userId
 
+  console.log('linkId:', linkId); // Verifica el ID del enlace
+  console.log('newShortUrl:', newShortUrl); // Verifica el nuevo short URL
+  console.log('authenticatedUserId:', authenticatedUserId); // Verifica el usuario autenticado
+
   // Formato del shortlink
   const shortUrlPattern = /^[a-zA-Z0-9\-]+$/
 

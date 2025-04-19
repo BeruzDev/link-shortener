@@ -5,6 +5,7 @@ import callToBackend from '../../config/config.js'
 
 export const useDashboard = (userSession) => {
   const [isCrafterModalOpen, setIsCrafterModalOpen] = useState(false)
+  const [isAnyModalOpen, setisAnyModalOpen] = useState(false);
   const [linkStored, setLinkStored] = useState([])
   const [activeTab, setActiveTab] = useState('links')
 
@@ -61,6 +62,8 @@ export const useDashboard = (userSession) => {
     setActiveTab,
     tabs,
     getUserLinks,
-    linkStored
+    linkStored,
+    isAnyModalOpen,
+    setisAnyModalOpen
   }
 }

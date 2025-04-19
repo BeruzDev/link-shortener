@@ -15,6 +15,8 @@ const Dashboard = ({ feedToast, userSession }) => {
     tabs,
     getUserLinks,
     linkStored,
+    isAnyModalOpen,
+    setisAnyModalOpen
   } = useDashboard(userSession)
 
   const TabComponent = tabs[activeTab]
@@ -26,7 +28,7 @@ const Dashboard = ({ feedToast, userSession }) => {
   }, [activeTab, getUserLinks])
 
   return (
-    <div className={`dashboard ${isCrafterModalOpen ? 'is-modal-open' : ''}`}>
+    <div className={`dashboard ${isCrafterModalOpen || isAnyModalOpen ? 'is-modal-open' : ''}`}>
       <div className="nav-links">
         <Button
           className={`windows ${activeTab === 'links' ? 'active-button' : ''}`}
@@ -48,6 +50,7 @@ const Dashboard = ({ feedToast, userSession }) => {
       <div id="windows-container">
         <TabComponent
           isCrafterModalOpen={isCrafterModalOpen}
+          setisAnyModalOpen={setisAnyModalOpen}
           onOpenCrafterModal={onOpenCrafterModal}
           onCloseCrafterModal={onCloseCrafterModal}
           userSession={userSession}
