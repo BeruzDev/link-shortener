@@ -1,28 +1,28 @@
 import React from 'react'
-import './CrafterModal.css'
+import './UpdateModal.css'
 import Button from '../Button/Button.jsx'
 import InputLink from '../InputLink/InputLink.jsx'
 import InputShort from '../InputShort/InputShort.jsx'
 import { IoIosClose } from 'react-icons/io'
-import { LuRocket } from 'react-icons/lu'
+import { LuSave } from "react-icons/lu";
 
-const CrafterModal = ({
-  linkDataUser,
+const UpdateModal = ({
   isVisible,
-  onCloseCrafterModal,
-  getCreateInputElement,
-  createButton,
+	onCloseUpdateModal,
+	id,
+	originalUrl,
+	shortUrl
 }) => {
   return (
-    <div id="crafter-modal" className={isVisible ? 'visible' : 'hidden'}>
+    <div id="update-modal" className={isVisible ? 'visible' : 'hidden'}>
       <div className="dialog">
         <div className="header">
-          <p className="header-tittle">Create a link</p>
+          <p className="header-tittle">Edit link</p>
           <div className="button-cont">
             <Button
               className={'close'}
               Icon={IoIosClose}
-              onClick={onCloseCrafterModal}
+              onClick={onCloseUpdateModal}
             />
           </div>
         </div>
@@ -32,8 +32,9 @@ const CrafterModal = ({
             <InputLink
               className={'inputs'}
               name="originalUrl"
-              value={linkDataUser.originalUrl}
-              onChange={getCreateInputElement}
+              value={originalUrl}
+							readOnly
+              // onChange={}
             />
           </div>
           <div className="pair-elements">
@@ -41,21 +42,24 @@ const CrafterModal = ({
             <InputShort
               className={'inputs'}
               name="shortUrl"
-              value={linkDataUser.shortUrl}
-              onChange={getCreateInputElement}
+              value={shortUrl}
+              // onChange={}
             />
           </div>
         </div>
         <div className="buttons-section">
-          <Button className="cancel" onClick={onCloseCrafterModal}>
+          <Button 
+						className="cancel" 
+						onClick={onCloseUpdateModal}
+					>
             Cancel
           </Button>
-          <Button 
-						className="create-shortLink" 
-						Icon={LuRocket} 
-						onClick={createButton}
+          <Button
+            className="create-shortLink"
+            Icon={LuSave}
+            //onClick={}
           >
-            Create
+            Update
           </Button>
         </div>
       </div>
@@ -63,4 +67,4 @@ const CrafterModal = ({
   )
 }
 
-export default CrafterModal
+export default UpdateModal

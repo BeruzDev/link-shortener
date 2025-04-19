@@ -5,6 +5,7 @@ import { MdDeleteForever } from 'react-icons/md'
 import { FiEdit } from 'react-icons/fi'
 import { MdQuestionMark } from "react-icons/md"
 import { HiOutlineDocumentDuplicate } from "react-icons/hi";
+import { HiOutlineDuplicate } from "react-icons/hi";
 import { useNavigate } from 'react-router-dom'
 import { supabase } from './config/supabase.js'
 
@@ -64,6 +65,12 @@ export const useAppLogic = () => {
           message: 'Link updated!',
           classIcon: 'update-icon',
         }
+      case 'copy':
+        return {
+          icon: <HiOutlineDuplicate />,
+          message: 'Copy to clipboard!',
+          classIcon: 'update-icon',
+        }
       default:
         return {
           icon: <MdQuestionMark />,
@@ -82,7 +89,7 @@ export const useAppLogic = () => {
 
     setTimeout(() => {
       setConfirmAdvice(false)
-    }, 6000)
+    }, 3000)
   }
 
   const toggleLogModal = () => {

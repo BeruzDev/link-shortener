@@ -223,6 +223,39 @@
   background-color: var(--component-base);
 }
 
+.copy-link{
+  color: var(--primary-font);
+  font-size: 16px;
+}
+
+.copy-link:hover{
+  cursor: pointer;
+  color: var(--detail-2);
+  transform: scale(1.1);
+}
+
+.edit-link{
+  color: var(--primary-font);
+  font-size: 16px;
+}
+
+.edit-link:hover{
+  cursor: pointer;
+  color: var(--detail-2);
+  transform: scale(1.1);
+}
+
+.delete-link{
+  color: var(--primary-font);
+  font-size: 16px;
+}
+
+.delete-link:hover{
+  cursor: pointer;
+  color: var(--delete);
+  transform: scale(1.1);
+}
+
 @keyframes shake {
   0% { transform: translateX(0); }
   25% { transform: translateX(-2px); }

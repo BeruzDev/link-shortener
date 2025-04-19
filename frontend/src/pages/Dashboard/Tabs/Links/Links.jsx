@@ -6,16 +6,30 @@ import Button from '../../../../components/Button/Button.jsx'
 import CrafterModal from '../../../../components/CrafterModal/CrafterModal.jsx'
 import LinkElement from '../../../../components/LinkElement/LinkElement.jsx'
 import { FaPlus } from 'react-icons/fa6'
-import { Link } from 'react-router-dom'
+import UpdateModal from '../../../../components/UpdateModal/UpdateModal.jsx'
 
-const Links = ({ isCrafterModalOpen, onOpenCrafterModal, onCloseCrafterModal, feedToast, userSession }) => {
+const Links = ({
+  isCrafterModalOpen,
+  onOpenCrafterModal,
+  onCloseCrafterModal,
+  feedToast,
+  userSession,
+  linkStored,
+  getUserLinks,
+}) => {
   const {
     linkDataUser,
     linkToSearch,
     getSearchInputElement,
     getCreateInputElement,
     createButton,
-  } = useLinksLogic(feedToast, userSession, onCloseCrafterModal)
+    handleCopy,
+    handleDelete,
+    isUpdateModalOpen,
+    onOpenUpdateModal,
+    onCloseUpdateModal,
+    linkDataUpdate,
+  } = useLinksLogic(feedToast, userSession, onCloseCrafterModal, getUserLinks, linkStored)
 
   return (
     <div id="links-window">
@@ -34,20 +48,40 @@ const Links = ({ isCrafterModalOpen, onOpenCrafterModal, onCloseCrafterModal, fe
         </Button>
       </div>
       <div className="bento-section">
-        <LinkElement />
-        <LinkElement />
-        <LinkElement />
+        {linkStored.length > 0 ? (
+          linkStored.map((link) => (
+            <LinkElement
+              key={link.id}
+              id={link.id}
+              originalUrl={link.originalUrl}
+              shortUrl={link.shortUrl}
+              createdAt={link.createdAt}
+              handleCopy={() => handleCopy(link.shortUrl)}
+              handleDelete={() => handleDelete(link.id)}
+              onOpenUpdateModal={() => onOpenUpdateModal(link.id)}
+            />
+          ))
+        ) : (
+          <p className="no-links-yet">No links yet.</p>
+        )}
       </div>
 
-      <CrafterModal 
-        linkDataUser={linkDataUser} 
-        isVisible={isCrafterModalOpen} 
-        onCloseCrafterModal={onCloseCrafterModal} 
+      <CrafterModal
+        linkDataUser={linkDataUser}
+        isVisible={isCrafterModalOpen}
+        onCloseCrafterModal={onCloseCrafterModal}
         createButton={createButton}
         getCreateInputElement={getCreateInputElement}
         userSession={userSession}
       />
 
+      <UpdateModal
+        isVisible={isUpdateModalOpen}
+        onCloseUpdateModal={onCloseUpdateModal}
+        id={linkDataUpdate.id}
+        originalUrl={linkDataUpdate.originalUrl}
+        shortUrl={linkDataUpdate.shortUrl}
+      />
     </div>
   )
 }

@@ -17,5 +17,11 @@
 		grid-template-columns: 1fr 1fr;
 		/* column-gap: 10px;
 		row-gap: 10px; */
+
+		.no-links-yet{
+			color: var(--secondary-font);
+			font-size: 16px;
+			margin: 25px 10px;
+		}
 	}
 }

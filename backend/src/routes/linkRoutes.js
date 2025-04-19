@@ -5,7 +5,7 @@ import {
   updateLinkController,
   deleteLinkController,
 } from '../controllers/linkController.js'
-import { authenticateToken } from '../middlewares/authMiddleware.js'
+import { verifySupabaseToken } from '../middlewares/authSupabaseToken.js'
 
 const router = express.Router()
 
@@ -13,12 +13,12 @@ const router = express.Router()
 router.post('/', createLinkController)
 
 // Obtener links del user (requiere auth)
-router.get('/my-links', authenticateToken, getLinksByUserIdController)
+router.get('/my-links', verifySupabaseToken, getLinksByUserIdController)
 
 // Actualizar link (requiere auth)
-router.put('/:linkId', authenticateToken, updateLinkController)
+router.put('/:linkId', verifySupabaseToken, updateLinkController)
 
 // Eliminar link (requiere auth)
-router.delete('/:linkId', authenticateToken, deleteLinkController)
+router.delete('/:linkId', verifySupabaseToken, deleteLinkController)
 
 export default router

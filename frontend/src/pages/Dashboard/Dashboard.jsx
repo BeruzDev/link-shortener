@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Dashboard.css'
 import { useDashboard } from './DashboardLogic.js'
 import Button from '../../components/Button/Button.jsx'
@@ -6,8 +6,24 @@ import { FaLink } from 'react-icons/fa6'
 import { IoMdSettings } from 'react-icons/io'
 
 const Dashboard = ({ feedToast, userSession }) => {
-  const { isCrafterModalOpen, onOpenCrafterModal, onCloseCrafterModal ,activeTab, setActiveTab, tabs } = useDashboard()
+  const {
+    isCrafterModalOpen,
+    onOpenCrafterModal,
+    onCloseCrafterModal,
+    activeTab,
+    setActiveTab,
+    tabs,
+    getUserLinks,
+    linkStored,
+  } = useDashboard(userSession)
+
   const TabComponent = tabs[activeTab]
+  
+  useEffect(() => {
+    if (activeTab === 'links') {
+      getUserLinks()
+    }
+  }, [activeTab, getUserLinks])
 
   return (
     <div className={`dashboard ${isCrafterModalOpen ? 'is-modal-open' : ''}`}>
@@ -35,6 +51,8 @@ const Dashboard = ({ feedToast, userSession }) => {
           onOpenCrafterModal={onOpenCrafterModal}
           onCloseCrafterModal={onCloseCrafterModal}
           userSession={userSession}
+          linkStored={linkStored}
+          getUserLinks={getUserLinks}
           feedToast={feedToast}
         />
       </div>
