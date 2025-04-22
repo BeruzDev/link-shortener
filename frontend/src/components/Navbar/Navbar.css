@@ -1,6 +1,6 @@
 #navbar{
 	color: var(--primary-font);
-	/* background-color: var(--opacity-base); */
+	background-color: var(--component-base);
 	width: 100%;
 	height: 55px;
 	position: fixed;

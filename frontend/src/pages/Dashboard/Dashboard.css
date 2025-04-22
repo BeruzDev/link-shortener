@@ -4,11 +4,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
-	height: 100vh;
 	margin: 55px 0;
-	/* background-color: var(--opacity-base); */
-	/* box-shadow: 0 0 0 0.2px var(--secondary-font); */
 
 	.nav-links{
 		width: 100%;
@@ -18,18 +14,18 @@
 	}
 
 	#windows-container{
-		height: 100%;
+		height: auto;
 		width: 100%;
 		padding: 25px;
 	}
 }
 
 @media (min-width: 1500px) {
-	#dashboard .nav-links{
+	.dashboard .nav-links{
 		padding: 10px 250px 0;
 	}
 
-	#dashboard #windows-container{
+	.dashboard #windows-container{
 		padding: 25px 250px;
 	}
 }

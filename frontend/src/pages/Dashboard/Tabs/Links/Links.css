@@ -1,7 +1,8 @@
 .links-window{
 	width: 100%;
-	height: 100%;
+	height: 100dvh;
 	position: relative;
+	
 
 	.buttons-section{
 		width: 100%;
@@ -12,16 +13,23 @@
 	}
 
 	.bento-section{
-		width: 100%;
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		/* column-gap: 10px;
-		row-gap: 10px; */
+		align-content: flex-start;
+		grid-template-columns: 50% 50%;
+		height: 100vh;
+		max-height: calc(100vh - 55px - 150px);
+		overflow-y: auto;
+	}
 
-		.no-links-yet{
-			color: var(--secondary-font);
-			font-size: 16px;
-			margin: 25px 10px;
-		}
+	.bento-section::-webkit-scrollbar{
+		width: 8px;
+	}
+	.bento-section::-webkit-scrollbar-track {
+		background: var(--root-base);
+	}
+	
+	.bento-section::-webkit-scrollbar-thumb {
+		background-color: var(--component-base);
+		border-radius: 4px; 
 	}
 }

@@ -120,7 +120,7 @@ export const useLinksLogic = (
 
       setTimeout(() => {
         getUserLinks()
-      }, 500)
+      }, 300)
     } catch (error) {
       console.error('Error while deleteing a link:', error)
       feedToast('error')

@@ -1,4 +1,5 @@
 #link-element{
+	height: 96px;
 	background-color: var(--opacity-base);
 	margin: 5px;
 	border-radius: 5px;
@@ -43,6 +44,10 @@
 			color: var(--secondary-font);
 			font-size: 14px;
 			font-family: monospace;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: 70%;
 		}
 	}
 

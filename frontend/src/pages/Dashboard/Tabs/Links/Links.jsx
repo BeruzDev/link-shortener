@@ -58,8 +58,7 @@ const Links = ({
         </Button>
       </div>
       <div className="bento-section">
-        {linkStored.length > 0 ? (
-          linkStored.map((link) => (
+        {linkStored.map((link) => (
             <LinkElement
               key={link.id}
               id={link.id}
@@ -72,9 +71,7 @@ const Links = ({
               getCreateInputElement={getCreateInputElement}
             />
           ))
-        ) : (
-          ''
-        )}
+        }
       </div>
 
       <CrafterModal
