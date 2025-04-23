@@ -2,6 +2,7 @@ import supabase from '../config/db.js'
 import {
   createLink,
   getLinksByUserId,
+  getLinksToExport,
   searchLink,
   updateLink,
   deleteLink,
@@ -58,6 +59,19 @@ const getLinksByUserIdController = async (req, res) => {
     res.status(200).json(links)
   } catch (error) {
     res.status(500).json({ message: 'Error fetching links: ' + error.message })
+  }
+}
+
+// Recuperar enlaces para exportar
+const getLinksToExportController = async (req, res) => {
+  const userId = req.userId
+
+  try {
+    const linksToExport = await getLinksToExport(userId)
+    res.status(200).json(linksToExport)
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching links: ' + error.message })
+
   }
 }
 
@@ -160,6 +174,7 @@ const redirectLinkController = async (req, res) => {
 export {
   createLinkController,
   getLinksByUserIdController,
+  getLinksToExportController,
   searchLinkController,
   updateLinkController,
   deleteLinkController,

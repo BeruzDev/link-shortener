@@ -2,6 +2,7 @@ import express from 'express'
 import {
   createLinkController,
   getLinksByUserIdController,
+  getLinksToExportController,
   searchLinkController,
   updateLinkController,
   deleteLinkController,
@@ -13,8 +14,11 @@ const router = express.Router()
 // Crear link
 router.post('/', createLinkController)
 
-// Obtener links del user (requiere auth)
+// Obtener links del user 
 router.get('/my-links', verifySupabaseToken, getLinksByUserIdController)
+
+// Obtener links para exportar
+router.get('/export-links', verifySupabaseToken, getLinksToExportController)
 
 // Buscar un link
 router.get('/search-link', verifySupabaseToken, searchLinkController)

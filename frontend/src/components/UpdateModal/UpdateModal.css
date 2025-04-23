@@ -110,3 +110,9 @@
 	opacity: 0;
 	backdrop-filter: none;
 }
+
+@media (max-width: 750px){
+	#update-modal{
+		padding: 0 10px;
+	}
+}

@@ -38,3 +38,15 @@
 		margin: 60px 0;
 	}
 }
+
+@media (max-width: 750px){
+	#subtitle{
+		text-align: center;
+		padding: 10px;
+	}
+
+	#home #crafter{
+		flex-direction: column;
+		gap: 20px;
+	}
+}

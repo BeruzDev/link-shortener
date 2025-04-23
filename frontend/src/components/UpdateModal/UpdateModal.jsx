@@ -39,7 +39,7 @@ const UpdateModal = ({
                 value={originalUrl}
                 readOnly
               />
-              <FiLock className="lock-icon" />
+              f
             </div>
           </div>
           <div className="pair-elements">

@@ -30,19 +30,32 @@ const getLinksByUserId = async (userId) => {
   return data
 }
 
+// recuperar enlaces para exportar
+const getLinksToExport = async (userId) => {
+  const {data, error}= await supabase
+  .from('links')
+  .select('original_url, short_url')
+  .eq('user_id', userId)
+
+  if(error){
+    throw new Error('Error fetching links for export: ' + error.message)
+  }
+
+  console.log(data)
+  return data
+}
+
 // Buscar un enlace
 const searchLink = async (findShortUrl) => {
-  const {data, error} = await supabase
-  .from('links')
-  .select('*')
-  .ilike('short_url', `%${findShortUrl}%`) //<-Busca coincidencias parciales ignorando mayúsculas/minúsculas
+  const { data, error } = await supabase
+    .from('links')
+    .select('*')
+    .ilike('short_url', `%${findShortUrl}%`) //<-Busca coincidencias parciales ignorando mayúsculas/minúsculas
 
-  if(error) {
+  if (error) {
     throw new Error('Error fetching link: ' + error.message)
   }
 
-  console.log('modelo data -> ', data)
-  console.log('modelo error -> ', error)
   return data
 }
 
@@ -87,4 +100,12 @@ const redirectLink = async (shortUrl) => {
   return data ? data.original_url : null
 }
 
-export { createLink, getLinksByUserId, searchLink, updateLink, deleteLink, redirectLink }
+export {
+  createLink,
+  getLinksByUserId,
+  getLinksToExport,
+  searchLink,
+  updateLink,
+  deleteLink,
+  redirectLink,
+}

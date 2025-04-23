@@ -75,6 +75,12 @@ export const useAppLogic = () => {
           message: 'Copy to clipboard!',
           classIcon: 'update-icon',
         }
+      case 'no-links':
+        return{
+          icon: <FaXmark />,
+          message: 'No links to export',
+          classIcon: 'delete-icon'
+        }
       default:
         return {
           icon: <MdQuestionMark />,

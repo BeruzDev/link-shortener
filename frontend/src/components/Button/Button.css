@@ -279,14 +279,11 @@
   border-radius: 5px;
   padding: 10px;
   margin: 0;
-  
-  .icon{
-    font-size: 16px;
-  }
+  font-size: 16px;
 }
 
 .export:hover{
-  background-color: var(--opacity-base);
+  background-color: var(--secondary-font);
   cursor: pointer;
 }
 
@@ -304,14 +301,12 @@
   border-radius: 5px;
   padding: 10px;
   margin: 0;
-
-  .icon{
-    font-size: 16px;
-  }
+  font-size: 16px;
+  
 }
 
 .delete-user:hover{
-  background-color: #b44848;
+  background-color: #8f3838;
   cursor: pointer;
 }
 
@@ -325,4 +320,10 @@
   50% { transform: translateX(2px); }
   75% { transform: translateX(-2px); }
   100% { transform: translateX(0); }
+}
+
+@media (max-width: 750px){
+  .crafter-button{
+    transform: rotate(90deg);
+  }
 }

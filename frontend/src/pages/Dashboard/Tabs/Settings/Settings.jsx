@@ -4,10 +4,11 @@ import './Settings.css'
 import Button from '../../../../components/Button/Button.jsx'
 import { IoWarningOutline } from 'react-icons/io5'
 import { FiLock } from 'react-icons/fi'
-import { FiDownload } from "react-icons/fi";
-import { TbHeartBroken } from "react-icons/tb";
+import { FiDownload } from 'react-icons/fi'
+import { TbHeartBroken } from 'react-icons/tb'
 
-const Settings = ({ userInfoSettings }) => {
+const Settings = ({ userInfoSettings, userSession, feedToast }) => {
+  const { exportUserLinks, deleteUserAccount, downloadLinksAsJson } = useSettingsLogic(userSession, feedToast)
 
   return (
     <div id="settings-window">
@@ -17,20 +18,14 @@ const Settings = ({ userInfoSettings }) => {
           <div className="data-section">
             <label className="label">Your name:</label>
             <div className="input-section">
-              <input 
-                className="input" 
-                value={userInfoSettings.userName}
-              />
+              <input className="input" value={userInfoSettings.userName} />
               <FiLock className="lock-icon" />
             </div>
           </div>
           <div className="data-section">
             <label className="label">Your email:</label>
             <div className="input-section">
-              <input 
-                className="input" 
-                value={userInfoSettings.userEmail}
-              />
+              <input className="input" value={userInfoSettings.userEmail} />
               <FiLock className="lock-icon" />
             </div>
           </div>
@@ -42,23 +37,23 @@ const Settings = ({ userInfoSettings }) => {
       </div>
       <div className="account-section">
         <p className="title">Account</p>
-        <div className='manage-section'>
-          <div className='export-section'>
-            <label className='label'>Export links:</label>
+        <div className="manage-section">
+          <div className="export-section">
+            <label className="label">Export links:</label>
             <Button
               className="export"
               Icon={FiDownload}
-              //onClick={}
+              onClick={downloadLinksAsJson}
             >
               Export all links
             </Button>
           </div>
-          <div className='delete-user-section'>
-            <label className='label'>Delete account:</label>
-            <Button 
+          <div className="delete-user-section">
+            <label className="label">Delete account:</label>
+            <Button
               className="delete-user"
               Icon={TbHeartBroken}
-              //onClick
+              onClick={deleteUserAccount}
             >
               Delete Account
             </Button>

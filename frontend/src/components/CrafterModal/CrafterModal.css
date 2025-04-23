@@ -93,3 +93,9 @@
 	opacity: 0;
 	backdrop-filter: none;
 }
+
+@media (max-width: 750px){
+	#crafter-modal{
+		padding: 0 10px;
+	}
+}
