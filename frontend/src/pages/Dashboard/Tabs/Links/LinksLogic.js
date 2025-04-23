@@ -7,7 +7,7 @@ export const useLinksLogic = (
   onCloseCrafterModal,
   getUserLinks,
   linkStored,
-  setisAnyModalOpen,
+  setisAnyModalOpen
 ) => {
   const [linkDataUser, setlinkDataUser] = useState({
     originalUrl: '',
@@ -15,6 +15,7 @@ export const useLinksLogic = (
     userId: '',
   })
   const [linkToSearch, setLinkToSearch] = useState({ findShortUrl: '' })
+  const [searchResults, setSearchResults] = useState([]);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false)
   const [linkDataUpdate, setLinkDataUpdate] = useState({
     linkId: '',
@@ -28,6 +29,51 @@ export const useLinksLogic = (
       ...prevState,
       [name]: value,
     }))
+
+    if (value === '') {
+      setSearchResults([]);
+    }
+  }
+
+  const clearLinkToSearch = () => {
+    setLinkToSearch({findShortUrl: ''})
+    setSearchResults([]);
+    console.log('Calling getUserLinks...');
+    getUserLinks()
+  }
+
+  const searchLink = async () => {
+    const { findShortUrl } = linkToSearch
+    const { accessToken } = userSession
+
+    console.log('vista -> ', findShortUrl)
+
+    try {
+      const response = await fetch(`${callToBackend}/links/search-link?findShortUrl=${findShortUrl}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${accessToken}`
+        }
+      })
+
+      if(!response.ok) throw new Error("Can't fetch search results")
+      const data = await response.json();
+
+      const formattedLinks = data.map(link => ({
+        id: link.id,
+        originalUrl: link.original_url,
+        shortUrl: link.short_url,
+        userId: link.user_id,
+        createdAt: link.created_at
+      }))
+
+      setSearchResults(formattedLinks)
+
+    } catch (error) {
+      console.error('Error while searching links: ', error)
+      feedToast('error') //!! <- pasar a no hay coincidencias
+    }
   }
 
   const getCreateInputElement = (element) => {
@@ -158,8 +204,8 @@ export const useLinksLogic = (
     const { linkId, shortUrl } = linkDataUpdate
     const { accessToken } = userSession
 
-    if (!linkId){
-      console.error('Link ID is undefined');
+    if (!linkId) {
+      console.error('Link ID is undefined')
       feedToast('error')
       return
     }
@@ -195,7 +241,10 @@ export const useLinksLogic = (
   return {
     linkDataUser,
     linkToSearch,
+    searchResults,
     getSearchInputElement,
+    clearLinkToSearch,
+    searchLink,
     getCreateInputElement,
     createButton,
     handleCopy,

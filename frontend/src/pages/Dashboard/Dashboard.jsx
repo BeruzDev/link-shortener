@@ -5,7 +5,7 @@ import Button from '../../components/Button/Button.jsx'
 import { FaLink } from 'react-icons/fa6'
 import { IoMdSettings } from 'react-icons/io'
 
-const Dashboard = ({ feedToast, userSession }) => {
+const Dashboard = ({ feedToast, userSession, userInfoSettings }) => {
   const {
     isCrafterModalOpen,
     onOpenCrafterModal,
@@ -54,6 +54,7 @@ const Dashboard = ({ feedToast, userSession }) => {
           onOpenCrafterModal={onOpenCrafterModal}
           onCloseCrafterModal={onCloseCrafterModal}
           userSession={userSession}
+          userInfoSettings={userInfoSettings}
           linkStored={linkStored}
           getUserLinks={getUserLinks}
           feedToast={feedToast}

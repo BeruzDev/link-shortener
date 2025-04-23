@@ -2,6 +2,7 @@ import express from 'express'
 import {
   createLinkController,
   getLinksByUserIdController,
+  searchLinkController,
   updateLinkController,
   deleteLinkController,
 } from '../controllers/linkController.js'
@@ -14,6 +15,9 @@ router.post('/', createLinkController)
 
 // Obtener links del user (requiere auth)
 router.get('/my-links', verifySupabaseToken, getLinksByUserIdController)
+
+// Buscar un link
+router.get('/search-link', verifySupabaseToken, searchLinkController)
 
 // Actualizar link (requiere auth)
 router.put('/:linkId', verifySupabaseToken, updateLinkController)

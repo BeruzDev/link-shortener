@@ -30,6 +30,22 @@ const getLinksByUserId = async (userId) => {
   return data
 }
 
+// Buscar un enlace
+const searchLink = async (findShortUrl) => {
+  const {data, error} = await supabase
+  .from('links')
+  .select('*')
+  .ilike('short_url', `%${findShortUrl}%`) //<-Busca coincidencias parciales ignorando mayúsculas/minúsculas
+
+  if(error) {
+    throw new Error('Error fetching link: ' + error.message)
+  }
+
+  console.log('modelo data -> ', data)
+  console.log('modelo error -> ', error)
+  return data
+}
+
 // Editar un enlace
 const updateLink = async (linkId, newShortUrl) => {
   const { data, error } = await supabase
@@ -71,4 +87,4 @@ const redirectLink = async (shortUrl) => {
   return data ? data.original_url : null
 }
 
-export { createLink, getLinksByUserId, updateLink, deleteLink, redirectLink }
+export { createLink, getLinksByUserId, searchLink, updateLink, deleteLink, redirectLink }

@@ -19,6 +19,10 @@ export const useAppLogic = () => {
     userId: null,
     accessToken: null,
   })
+  const [userInfoSettings, setUserInfoSettings] = useState({
+    userName: null,
+    userEmail: null,
+  });
   const navigate = useNavigate()
 
   const getToastMessage = (type) => {
@@ -124,7 +128,13 @@ export const useAppLogic = () => {
             accessToken: data.session.access_token,
           }
 
+          const sessionUserInfo = {
+            userName: data.session.user.user_metadata.full_name,
+            userEmail: data.session.user.user_metadata.email,
+          }
+
           setUserSession(sessionInfo)
+          setUserInfoSettings(sessionUserInfo)
         }
       } catch (error) {
         console.error('Error during session fetch:', error.message)
@@ -141,6 +151,7 @@ export const useAppLogic = () => {
     classIcon,
     isLogModalOpen,
     userSession,
+    userInfoSettings,
     feedToast,
     toggleLogModal,
     logoutSession,

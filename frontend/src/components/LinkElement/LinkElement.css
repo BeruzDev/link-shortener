@@ -1,5 +1,6 @@
 #link-element{
 	height: 96px;
+	box-sizing: border-box;
 	background-color: var(--opacity-base);
 	margin: 5px;
 	border-radius: 5px;
@@ -60,5 +61,11 @@
 			font-size: 12px;
 			font-family: monospace;
 		}
+	}
+}
+
+@media (max-width: 750px) {
+  #link-element .mid-section .original-url{
+		max-width: 25%;
 	}
 }

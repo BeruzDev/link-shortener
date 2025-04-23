@@ -7,6 +7,7 @@ import CrafterModal from '../../../../components/CrafterModal/CrafterModal.jsx'
 import LinkElement from '../../../../components/LinkElement/LinkElement.jsx'
 import { FaPlus } from 'react-icons/fa6'
 import UpdateModal from '../../../../components/UpdateModal/UpdateModal.jsx'
+import { CgLayoutGrid } from 'react-icons/cg'
 
 const Links = ({
   isCrafterModalOpen,
@@ -21,7 +22,10 @@ const Links = ({
   const {
     linkDataUser,
     linkToSearch,
+    searchResults,
     getSearchInputElement,
+    clearLinkToSearch,
+    searchLink,
     getCreateInputElement,
     createButton,
     handleCopy,
@@ -48,6 +52,12 @@ const Links = ({
           name="findShortUrl"
           value={linkToSearch.findShortUrl}
           onChange={getSearchInputElement}
+          clearLinkToSearch={clearLinkToSearch}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              searchLink();
+            }
+          }}
         />
         <Button
           className="create-link"
@@ -58,20 +68,19 @@ const Links = ({
         </Button>
       </div>
       <div className="bento-section">
-        {linkStored.map((link) => (
-            <LinkElement
-              key={link.id}
-              id={link.id}
-              originalUrl={link.originalUrl}
-              shortUrl={link.shortUrl}
-              createdAt={link.createdAt}
-              handleCopy={() => handleCopy(link.shortUrl)}
-              handleDelete={() => handleDelete(link.id)}
-              onOpenUpdateModal={() => onOpenUpdateModal(link.id)}
-              getCreateInputElement={getCreateInputElement}
-            />
-          ))
-        }
+        {(searchResults.length > 0 ? searchResults : linkStored).map((link) => (
+          <LinkElement
+						key={link.id}
+						id={link.id}
+						originalUrl={link.originalUrl}
+						shortUrl={link.shortUrl}
+						createdAt={link.createdAt}
+						handleCopy={() => handleCopy(link.shortUrl)}
+						handleDelete={() => handleDelete(link.id)}
+						onOpenUpdateModal={() => onOpenUpdateModal(link.id)}
+						getCreateInputElement={getCreateInputElement}
+					/>
+        ))}
       </div>
 
       <CrafterModal

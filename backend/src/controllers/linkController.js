@@ -2,6 +2,7 @@ import supabase from '../config/db.js'
 import {
   createLink,
   getLinksByUserId,
+  searchLink,
   updateLink,
   deleteLink,
   redirectLink,
@@ -10,7 +11,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 // Crear un enlace
 const createLinkController = async (req, res) => {
-  const { originalUrl, shortUrl, userId} = req.body
+  const { originalUrl, shortUrl, userId } = req.body
   const finalUserId = userId ?? null
   const generatedShortUrl = shortUrl || uuidv4().slice(0, 8) // Si no se proporciona shortUrl, generamos uno por defecto
 
@@ -33,14 +34,14 @@ const createLinkController = async (req, res) => {
     })
   } catch (error) {
     console.error('Supabase error:', error)
-  
+
     if (error.code === '23505') {
       return res.status(409).json({
         message: 'El shortUrl ya está en uso. Prueba con otro.',
         code: 'DUPLICATE_SHORTURL',
       })
     }
-  
+
     res.status(500).json({
       message: 'Error creando el enlace',
       detail: error.message,
@@ -60,15 +61,35 @@ const getLinksByUserIdController = async (req, res) => {
   }
 }
 
+// Buscar un link
+const searchLinkController = async (req, res) => {
+  const { findShortUrl } = req.query
+  console.log('controller -> ', findShortUrl)
+
+  if (!findShortUrl){
+    return res.status(400).json({ message: 'Query parameter is required'})
+  }
+
+  try {
+    const link = await searchLink(findShortUrl)
+    if(link.length===0){
+      return res.status(400).json({message: 'No link found matching the search term'})
+    }
+    res.status(200).json(link)
+  } catch (error) {
+    res.status(500).json({message: 'Error fetching link: ' + error.message})
+  }
+}
+
 // Editar un enlace
 const updateLinkController = async (req, res) => {
   const { linkId } = req.params
   const { newShortUrl } = req.body
   const authenticatedUserId = req.userId
 
-  console.log('linkId:', linkId); // Verifica el ID del enlace
-  console.log('newShortUrl:', newShortUrl); // Verifica el nuevo short URL
-  console.log('authenticatedUserId:', authenticatedUserId); // Verifica el usuario autenticado
+  console.log('linkId:', linkId) // Verifica el ID del enlace
+  console.log('newShortUrl:', newShortUrl) // Verifica el nuevo short URL
+  console.log('authenticatedUserId:', authenticatedUserId) // Verifica el usuario autenticado
 
   // Formato del shortlink
   const shortUrlPattern = /^[a-zA-Z0-9\-]+$/
@@ -81,29 +102,27 @@ const updateLinkController = async (req, res) => {
   }
 
   try {
-    const {data, error} = await supabase
+    const { data, error } = await supabase
       .from('links')
       .select('user_id')
       .eq('id', linkId)
       .single()
 
-      if (error || !data) {
-        return res.status(404).json({ message: 'Link not found' })
-      }
+    if (error || !data) {
+      return res.status(404).json({ message: 'Link not found' })
+    }
 
-      if(data.user_id !== authenticatedUserId){
-        return res.status(403).json({
-          message: "You don't have permission to edit this link."
-        })
-      }
+    if (data.user_id !== authenticatedUserId) {
+      return res.status(403).json({
+        message: "You don't have permission to edit this link.",
+      })
+    }
 
     const updatedLink = await updateLink(linkId, newShortUrl)
-    res
-      .status(200)
-      .json({
-        original_url: updatedLink.original_url,
-        short_url: updatedLink.short_url,
-      })
+    res.status(200).json({
+      original_url: updatedLink.original_url,
+      short_url: updatedLink.short_url,
+    })
   } catch (error) {
     res.status(500).json({ message: 'Error updating link: ' + error.message })
   }
@@ -141,6 +160,7 @@ const redirectLinkController = async (req, res) => {
 export {
   createLinkController,
   getLinksByUserIdController,
+  searchLinkController,
   updateLinkController,
   deleteLinkController,
   redirectLinkController,

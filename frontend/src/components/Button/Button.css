@@ -256,6 +256,69 @@
   transform: scale(1.1);
 }
 
+.clear-button{
+  color: var(--primary-font);
+  font-size: 25px;
+  position: fixed;
+  left: 245px;
+}
+
+.clear-button:hover{
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.export{
+  display: flex;
+  justify-content: center;
+  color: var(--primary-font);
+  box-shadow: 0 0 0 0.2px var(--secondary-font);
+  background-color: var(--component-base);
+  gap: 10px;
+  width: 200px;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0;
+  
+  .icon{
+    font-size: 16px;
+  }
+}
+
+.export:hover{
+  background-color: var(--opacity-base);
+  cursor: pointer;
+}
+
+.export:hover .icon{
+  transform: scale(1.1);
+}
+
+.delete-user{
+  display: flex;
+  justify-content: center;
+  color: var(--primary-font);
+  background-color: var(--error);
+  gap: 10px;
+  width: 200px;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0;
+
+  .icon{
+    font-size: 16px;
+  }
+}
+
+.delete-user:hover{
+  background-color: #b44848;
+  cursor: pointer;
+}
+
+.delete-user:hover .icon{
+  transform: scale(1.1);
+}
+
 @keyframes shake {
   0% { transform: translateX(0); }
   25% { transform: translateX(-2px); }

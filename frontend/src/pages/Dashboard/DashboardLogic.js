@@ -9,6 +9,8 @@ export const useDashboard = (userSession) => {
   const [linkStored, setLinkStored] = useState([])
   const [activeTab, setActiveTab] = useState('links')
 
+  console.log(userSession)
+
   const onOpenCrafterModal = () => {
     setIsCrafterModalOpen(true)
   }
