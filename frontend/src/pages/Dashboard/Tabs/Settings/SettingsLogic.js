@@ -32,20 +32,21 @@ export const useSettingsLogic = (userSession, feedToast) => {
       }))
 
       setlinksToExport(formattedLinks)
+      return formattedLinks
     } catch (error) {
       console.error('Error exporting links from user: ', error)
     }
   }
 
   const downloadLinksAsJson = async () => {
-    await exportUserLinks()
+    const exportedLinks = await exportUserLinks()
 
-    if (!linksToExport || linksToExport.length === 0) {
+    if (!exportedLinks || exportedLinks.length === 0) {
       feedToast('no-links')
       return
     }
 
-    const jsonData = JSON.stringify(linksToExport, null, 2)
+    const jsonData = JSON.stringify(exportedLinks, null, 2)
     const blob = new Blob([jsonData], { type: 'application/json' })
     const url = URL.createObjectURL(blob)
     const link = document.createElement('a')

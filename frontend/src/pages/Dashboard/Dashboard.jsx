@@ -19,13 +19,14 @@ const Dashboard = ({ feedToast, userSession, userInfoSettings }) => {
     setisAnyModalOpen
   } = useDashboard(userSession)
 
+
   const TabComponent = tabs[activeTab]
   
   useEffect(() => {
-    if (activeTab === 'links') {
+    if (activeTab === 'links' && userSession.accessToken) {
       getUserLinks()
     }
-  }, [activeTab, getUserLinks])
+  }, [activeTab, userSession.accessToken, getUserLinks])
 
   return (
     <div className={`dashboard ${isCrafterModalOpen || isAnyModalOpen ? 'is-modal-open' : ''}`}>

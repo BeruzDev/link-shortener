@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { FaCheck } from 'react-icons/fa6'
 import { FaXmark } from 'react-icons/fa6'
 import { MdDeleteForever } from 'react-icons/md'
 import { FiEdit } from 'react-icons/fi'
-import { MdQuestionMark } from "react-icons/md"
-import { HiOutlineDocumentDuplicate } from "react-icons/hi";
-import { HiOutlineDuplicate } from "react-icons/hi";
+import { MdQuestionMark } from 'react-icons/md'
+import { HiOutlineDocumentDuplicate } from 'react-icons/hi'
+import { HiOutlineDuplicate } from 'react-icons/hi'
 import { TbHeartBroken } from 'react-icons/tb'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from './config/supabase.js'
@@ -23,8 +23,13 @@ export const useAppLogic = () => {
   const [userInfoSettings, setUserInfoSettings] = useState({
     userName: null,
     userEmail: null,
-  });
+  })
   const navigate = useNavigate()
+
+  const memoizedUserSession = useMemo(
+    () => userSession,
+    [userSession.userId, userSession.accessToken]
+  )
 
   const getToastMessage = (type) => {
     switch (type) {
@@ -40,12 +45,12 @@ export const useAppLogic = () => {
           message: 'Link crafted!',
           classIcon: 'success-icon',
         }
-        case 'duplicate':
-          return {
-            icon: <HiOutlineDocumentDuplicate />,
-            message: 'This shortcut is already used',
-            classIcon: 'error-icon',
-          }
+      case 'duplicate':
+        return {
+          icon: <HiOutlineDocumentDuplicate />,
+          message: 'This shortcut is already used',
+          classIcon: 'error-icon',
+        }
       case 'error':
         return {
           icon: <FaXmark />,
@@ -77,16 +82,16 @@ export const useAppLogic = () => {
           classIcon: 'update-icon',
         }
       case 'no-links':
-        return{
+        return {
           icon: <FaXmark />,
           message: 'No links to export',
-          classIcon: 'delete-icon'
+          classIcon: 'delete-icon',
         }
-        case 'bye':
-        return{
+      case 'bye':
+        return {
           icon: <TbHeartBroken />,
           message: 'Hope to see you soon!',
-          classIcon: 'delete-icon'
+          classIcon: 'delete-icon',
         }
       default:
         return {
@@ -164,7 +169,7 @@ export const useAppLogic = () => {
     icon,
     classIcon,
     isLogModalOpen,
-    userSession,
+    userSession: memoizedUserSession,
     userInfoSettings,
     feedToast,
     toggleLogModal,

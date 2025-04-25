@@ -1,6 +1,7 @@
 @font-face{
 	font-family: 'bukhari';
-	src: url('../../assets/fonts/BukhariScript.ttf');
+	src: url('../../assets/fonts/BukhariScript.ttf') format('truetype');
+	font-display: swap;
 }
 
 #home{

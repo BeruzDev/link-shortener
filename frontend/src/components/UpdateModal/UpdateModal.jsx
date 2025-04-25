@@ -36,7 +36,7 @@ const UpdateModal = ({
               <InputLink
                 className="inputs locked-input"
                 name="originalUrl"
-                value={originalUrl}
+                defaultValue={originalUrl}
                 readOnly
               />
               f
