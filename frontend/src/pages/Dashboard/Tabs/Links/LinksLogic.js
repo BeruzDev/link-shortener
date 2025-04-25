@@ -38,7 +38,6 @@ export const useLinksLogic = (
   const clearLinkToSearch = () => {
     setLinkToSearch({findShortUrl: ''})
     setSearchResults([]);
-    console.log('Calling getUserLinks...');
     getUserLinks()
   }
 
@@ -46,7 +45,6 @@ export const useLinksLogic = (
     const { findShortUrl } = linkToSearch
     const { accessToken } = userSession
 
-    console.log('vista -> ', findShortUrl)
 
     try {
       const response = await fetch(`${callToBackend}/links/search-link?findShortUrl=${findShortUrl}`, {
@@ -131,7 +129,6 @@ export const useLinksLogic = (
     navigator.clipboard
       .writeText(fullUrl)
       .then(() => {
-        console.log('link copyed!', fullUrl)
         feedToast('copy')
       })
       .catch((err) => {
@@ -160,7 +157,6 @@ export const useLinksLogic = (
       if (!response.ok) throw new Error("Can't delete the link")
 
       const data = await response.json()
-      console.log('Link deleted:', data)
 
       feedToast('delete')
 
@@ -227,7 +223,6 @@ export const useLinksLogic = (
 
       if (!response.ok) throw new Error("Can't update the link")
       const data = await response.json()
-      console.log('link updated: ', data)
 
       feedToast('update')
       getUserLinks()

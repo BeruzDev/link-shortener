@@ -6,6 +6,7 @@ import {
   searchLink,
   updateLink,
   deleteLink,
+  deleteUserOnCascade,
   redirectLink,
 } from '../models/Link.js'
 import { v4 as uuidv4 } from 'uuid'
@@ -71,27 +72,27 @@ const getLinksToExportController = async (req, res) => {
     res.status(200).json(linksToExport)
   } catch (error) {
     res.status(500).json({ message: 'Error fetching links: ' + error.message })
-
   }
 }
 
 // Buscar un link
 const searchLinkController = async (req, res) => {
   const { findShortUrl } = req.query
-  console.log('controller -> ', findShortUrl)
 
-  if (!findShortUrl){
-    return res.status(400).json({ message: 'Query parameter is required'})
+  if (!findShortUrl) {
+    return res.status(400).json({ message: 'Query parameter is required' })
   }
 
   try {
     const link = await searchLink(findShortUrl)
-    if(link.length===0){
-      return res.status(400).json({message: 'No link found matching the search term'})
+    if (link.length === 0) {
+      return res
+        .status(400)
+        .json({ message: 'No link found matching the search term' })
     }
     res.status(200).json(link)
   } catch (error) {
-    res.status(500).json({message: 'Error fetching link: ' + error.message})
+    res.status(500).json({ message: 'Error fetching link: ' + error.message })
   }
 }
 
@@ -100,10 +101,6 @@ const updateLinkController = async (req, res) => {
   const { linkId } = req.params
   const { newShortUrl } = req.body
   const authenticatedUserId = req.userId
-
-  console.log('linkId:', linkId) // Verifica el ID del enlace
-  console.log('newShortUrl:', newShortUrl) // Verifica el nuevo short URL
-  console.log('authenticatedUserId:', authenticatedUserId) // Verifica el usuario autenticado
 
   // Formato del shortlink
   const shortUrlPattern = /^[a-zA-Z0-9\-]+$/
@@ -154,6 +151,21 @@ const deleteLinkController = async (req, res) => {
   }
 }
 
+// Eliminar usuario en cascada
+const deleteUserOnCascadeController = async (req, res) => {
+  const userId = req.userId
+
+
+
+  try {
+    const result = await deleteUserOnCascade(userId)
+    res.status(200).json({ message: 'User deleted successfully' })
+  } catch (error) {
+    console.error('Error in deleteUserOnCascadeController:', error); // Log del error
+    res.status(500).json({ message: 'Error fetching links: ' + error.message })
+  }
+}
+
 // Redireccion de shortUrl a originalUrl
 const redirectLinkController = async (req, res) => {
   const { shortUrl } = req.params
@@ -178,5 +190,6 @@ export {
   searchLinkController,
   updateLinkController,
   deleteLinkController,
+  deleteUserOnCascadeController,
   redirectLinkController,
 }

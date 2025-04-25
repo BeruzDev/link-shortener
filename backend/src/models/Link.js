@@ -32,16 +32,15 @@ const getLinksByUserId = async (userId) => {
 
 // recuperar enlaces para exportar
 const getLinksToExport = async (userId) => {
-  const {data, error}= await supabase
-  .from('links')
-  .select('original_url, short_url')
-  .eq('user_id', userId)
+  const { data, error } = await supabase
+    .from('links')
+    .select('original_url, short_url')
+    .eq('user_id', userId)
 
-  if(error){
+  if (error) {
     throw new Error('Error fetching links for export: ' + error.message)
   }
 
-  console.log(data)
   return data
 }
 
@@ -85,6 +84,33 @@ const deleteLink = async (linkId) => {
   return data
 }
 
+// Eliminar usuario con todos sus links
+const deleteUserOnCascade = async (userId) => {
+  try {
+    const { error: linksError } = await supabase
+      .from('links')
+      .delete()
+      .eq('user_id', userId)
+
+    if (linksError) {
+      throw new Error('Error deleting Links: ' + linksError.message)
+    }
+
+    const { error: userError } = await supabase.auth.admin.deleteUser(userId)
+
+    if (userError) {
+      throw new Error('Error deleting user: ' + userError.message)
+    }
+
+    ;('User deleted successfully') // Log si el usuario se elimina correctamente
+
+    return { message: 'User and associated links deleted successfully' }
+  } catch (error) {
+    console.error('Error in deleteUserOnCascade:', error)
+    throw new Error('Error in deleteUserOnCascade: ' + error.message)
+  }
+}
+
 // Redireccion de shortUrl a originalUrl
 const redirectLink = async (shortUrl) => {
   const { data, error } = await supabase
@@ -107,5 +133,6 @@ export {
   searchLink,
   updateLink,
   deleteLink,
+  deleteUserOnCascade,
   redirectLink,
 }

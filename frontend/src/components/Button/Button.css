@@ -324,6 +324,6 @@
 
 @media (max-width: 750px){
   .crafter-button{
-    transform: rotate(90deg);
+    transform: rotate(90deg         );
   }
 }

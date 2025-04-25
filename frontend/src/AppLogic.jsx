@@ -6,6 +6,7 @@ import { FiEdit } from 'react-icons/fi'
 import { MdQuestionMark } from "react-icons/md"
 import { HiOutlineDocumentDuplicate } from "react-icons/hi";
 import { HiOutlineDuplicate } from "react-icons/hi";
+import { TbHeartBroken } from 'react-icons/tb'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from './config/supabase.js'
 
@@ -81,6 +82,12 @@ export const useAppLogic = () => {
           message: 'No links to export',
           classIcon: 'delete-icon'
         }
+        case 'bye':
+        return{
+          icon: <TbHeartBroken />,
+          message: 'Hope to see you soon!',
+          classIcon: 'delete-icon'
+        }
       default:
         return {
           icon: <MdQuestionMark />,
@@ -114,6 +121,7 @@ export const useAppLogic = () => {
       feedToast('error')
     } else {
       setUserSession({ userId: null, accessToken: null })
+      feedToast('bye')
       navigate('/')
     }
   }

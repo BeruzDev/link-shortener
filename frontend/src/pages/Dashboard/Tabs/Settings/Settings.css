@@ -126,6 +126,15 @@
 				}
 			}
 		}
+
+		.subtitle{
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			color: var(--secondary-font);
+			font-size: 15px;
+			margin-top: 25px;
+		}
 	}
 }
 
@@ -133,7 +142,14 @@
 	#settings-window{
 		display: flex;
 		flex-direction: column;
-		gap: 10px;
 		padding: 0;
+
+		.user-section{
+			margin-bottom: 5px;
+		}
+
+		.account-section{
+			margin-top: 5px;
+		}
 	}
 }

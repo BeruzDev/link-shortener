@@ -8,7 +8,7 @@ import { FiDownload } from 'react-icons/fi'
 import { TbHeartBroken } from 'react-icons/tb'
 
 const Settings = ({ userInfoSettings, userSession, feedToast }) => {
-  const { exportUserLinks, deleteUserAccount, downloadLinksAsJson } = useSettingsLogic(userSession, feedToast)
+  const { deleteUserAccount, downloadLinksAsJson } = useSettingsLogic(userSession, feedToast)
 
   return (
     <div id="settings-window">
@@ -39,13 +39,13 @@ const Settings = ({ userInfoSettings, userSession, feedToast }) => {
         <p className="title">Account</p>
         <div className="manage-section">
           <div className="export-section">
-            <label className="label">Export links:</label>
+            <label className="label">Export to JSON:</label>
             <Button
               className="export"
               Icon={FiDownload}
               onClick={downloadLinksAsJson}
             >
-              Export all links
+              Export All Links
             </Button>
           </div>
           <div className="delete-user-section">
@@ -59,6 +59,9 @@ const Settings = ({ userInfoSettings, userSession, feedToast }) => {
             </Button>
           </div>
         </div>
+        <p className='subtitle'>
+          Developed by BeruzDev.
+        </p>
       </div>
     </div>
   )
