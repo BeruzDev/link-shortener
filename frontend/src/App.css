@@ -9,6 +9,7 @@
   --success: #49bb64;
   --error: #e45050; 
   --delete: #f06d6a; 
+  --warning: #f0dc6a;
 }
 
 * {

@@ -314,6 +314,49 @@
   transform: scale(1.1);
 }
 
+.cancel-delete{
+  height: 36px ;
+  width: 80px;
+  border-radius: 5px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 0 0 0.2px var(--secondary-font);
+  color: var(--secondary-font);
+  font-size: 14px;
+  margin: 0;
+}
+
+.cancel-delete:hover{
+  cursor: pointer;
+  color: var(--primary-font);
+  background-color: var(--secondary-font);
+}
+
+.accept-delete{
+  height: 36px ;
+  width: 80px;
+  border-radius: 5px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 0 0 0.2px var(--secondary-font);
+  color: var(--secondary-font);
+  font-size: 14px;
+  margin: 0;
+
+}
+
+.accept-delete:hover{
+  cursor: pointer;
+  background-color: var(--opacity-base);
+  cursor: pointer;
+  color: var(--primary-font);
+  background-color: var(--secondary-font);
+}
+
 @keyframes shake {
   0% { transform: translateX(0); }
   25% { transform: translateX(-2px); }
@@ -324,6 +367,6 @@
 
 @media (max-width: 750px){
   .crafter-button{
-    transform: rotate(90deg         );
+    transform: rotate(90deg);
   }
 }

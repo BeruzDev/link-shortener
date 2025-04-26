@@ -15,6 +15,7 @@ function App() {
     classIcon,
     userSession,
     userInfoSettings,
+    guestId,
     feedToast,
     toggleLogModal,
     isLogModalOpen,
@@ -27,7 +28,7 @@ function App() {
       
       <Routes>
         {/* Rutas de la app */}
-        <Route path="/" element={<Home feedToast={feedToast} />} />
+        <Route path="/" element={<Home feedToast={feedToast} guestId={guestId} />} />
         <Route path="/dashboard" element={<Dashboard feedToast={feedToast} userSession={userSession} userInfoSettings={userInfoSettings} />} />
       </Routes>
 

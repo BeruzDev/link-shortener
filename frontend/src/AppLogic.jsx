@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import { FaCheck } from 'react-icons/fa6'
 import { FaXmark } from 'react-icons/fa6'
 import { MdDeleteForever } from 'react-icons/md'
@@ -24,6 +25,18 @@ export const useAppLogic = () => {
     userName: null,
     userEmail: null,
   })
+  const [guestId, setguestId] = useState(() => {
+    const existingGuestId = localStorage.getItem('guestId')
+    if (existingGuestId) {
+      return existingGuestId
+    }
+    const newGuestId = uuidv4()
+    localStorage.setItem('guestId', newGuestId)
+    return newGuestId
+  });
+
+  
+
   const navigate = useNavigate()
 
   const memoizedUserSession = useMemo(
@@ -171,6 +184,7 @@ export const useAppLogic = () => {
     isLogModalOpen,
     userSession: memoizedUserSession,
     userInfoSettings,
+    guestId,
     feedToast,
     toggleLogModal,
     logoutSession,

@@ -4,6 +4,7 @@
 	display: grid;
 	grid-template-columns: 70% auto;
 	padding: 0 250px;
+	position: relative;
 
 	.user-section{
 		background-color: var(--opacity-base);

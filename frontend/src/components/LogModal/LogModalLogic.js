@@ -10,10 +10,12 @@ export const useLogModal = (feedToast) => {
   const handleGoogleLogin = async () => {
     try {
       setLoading(true)
+      const guestId = localStorage.getItem('guestId')
+
       const { session, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: redirectUrl,
+          redirectTo: `${redirectUrl}?guestId=${guestId}`,
         },
       })
 
@@ -32,10 +34,12 @@ export const useLogModal = (feedToast) => {
   const handleGitHubLogin = async () => {
     try {
       setLoading(true)
+      const guestId = localStorage.getItem('guestId')
+
       const { session, error } = await supabase.auth.signInWithOAuth({
         provider: 'github',
         options: {
-          redirectTo: redirectUrl,
+          redirectTo: `${redirectUrl}?guestId=${guestId}`,
         },
       })
 

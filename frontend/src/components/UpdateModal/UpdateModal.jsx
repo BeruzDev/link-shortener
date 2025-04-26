@@ -5,12 +5,10 @@ import InputLink from '../InputLink/InputLink.jsx'
 import InputShort from '../InputShort/InputShort.jsx'
 import { IoIosClose } from 'react-icons/io'
 import { LuSave } from 'react-icons/lu'
-import { FiLock } from 'react-icons/fi'
 
 const UpdateModal = ({
   isVisible,
   onCloseUpdateModal,
-  id,
   originalUrl,
   shortUrl,
   handleInputChange,
@@ -20,7 +18,7 @@ const UpdateModal = ({
     <div id="update-modal" className={isVisible ? 'visible' : 'hidden'}>
       <div className="dialog">
         <div className="header">
-          <p className="header-tittle">Edit link</p>
+          <p className="header-tittle">Edit your short</p>
           <div className="button-cont">
             <Button
               className="close"
@@ -35,11 +33,11 @@ const UpdateModal = ({
             <div className='original-link-locker'>
               <InputLink
                 className="inputs locked-input"
-                name="originalUrl"
-                defaultValue={originalUrl}
                 readOnly
+                name="originalUrl"
+                value={originalUrl}
+                onChange={handleInputChange}
               />
-              f
             </div>
           </div>
           <div className="pair-elements">

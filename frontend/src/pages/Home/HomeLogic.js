@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import callToBackend from '../../config/config.js'
 
-export const useHomeLogic = (feedToast) => {
+export const useHomeLogic = (feedToast, guestId) => {
   const [linkData, setLinkData] = useState({ originalUrl: '', shortUrl: '' })
 
   const getInputElement = (element) => {
@@ -26,7 +26,11 @@ export const useHomeLogic = (feedToast) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ originalUrl: originalUrl, shortUrl: shortUrl }),
+        body: JSON.stringify({
+          originalUrl: originalUrl,
+          shortUrl: shortUrl,
+          guestId,
+        }),
       })
 
       if (response.ok) {

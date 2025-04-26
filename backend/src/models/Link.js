@@ -1,11 +1,16 @@
 import supabase from '../config/db.js'
 
 // Crear un enlace
-const createLink = async (originalUrl, shortUrl, userId) => {
+const createLink = async (originalUrl, shortUrl, userId, guestId) => {
   const { data, error } = await supabase
     .from('links')
     .insert([
-      { original_url: originalUrl, short_url: shortUrl, user_id: userId },
+      {
+        original_url: originalUrl,
+        short_url: shortUrl,
+        user_id: userId,
+        guest_id: guestId,
+      },
     ])
     .select('id, short_url')
 

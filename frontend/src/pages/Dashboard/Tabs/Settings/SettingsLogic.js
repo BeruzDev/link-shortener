@@ -7,6 +7,7 @@ export const useSettingsLogic = (userSession, feedToast) => {
     originalUrl: null,
     shortUrl: null,
   })
+  const [isConfirmAlertOpen, setisConfirmAlertOpen] = useState(false);
 
   const navigate = useNavigate()
 
@@ -59,14 +60,6 @@ export const useSettingsLogic = (userSession, feedToast) => {
   const deleteUserAccount = async () => {
     const { accessToken } = userSession
 
-    const confirmDelete = window.confirm(
-      'Are you sure you want to delete your account? This action cannot be undone.'
-    )
-
-    if (!confirmDelete) {
-      return
-    }
-
     try {
       const response = await fetch(`${callToBackend}/links/delete-user`, {
         method: 'DELETE',
@@ -89,10 +82,21 @@ export const useSettingsLogic = (userSession, feedToast) => {
     }
   }
 
+  const onOpenConfirmAlert = async () =>{
+    setisConfirmAlertOpen(true)
+  }
+
+  const onCloseConfirmAlert = async () => {
+    setisConfirmAlertOpen(false)
+  }
+
   return {
     linksToExport,
     exportUserLinks,
     deleteUserAccount,
     downloadLinksAsJson,
+    onOpenConfirmAlert,
+    onCloseConfirmAlert,
+    isConfirmAlertOpen
   }
 }

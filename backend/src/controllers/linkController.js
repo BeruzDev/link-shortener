@@ -13,13 +13,13 @@ import { v4 as uuidv4 } from 'uuid'
 
 // Crear un enlace
 const createLinkController = async (req, res) => {
-  const { originalUrl, shortUrl, userId } = req.body
+  const { originalUrl, shortUrl, userId, guestId } = req.body
   const finalUserId = userId ?? null
   const generatedShortUrl = shortUrl || uuidv4().slice(0, 8) // Si no se proporciona shortUrl, generamos uno por defecto
 
   try {
     // Hacemos la inserción
-    const data = await createLink(originalUrl, generatedShortUrl, finalUserId)
+    const data = await createLink(originalUrl, generatedShortUrl, finalUserId, guestId)
 
     // Si no hay datos
     if (!data || data.length === 0) {

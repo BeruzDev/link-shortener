@@ -2,13 +2,20 @@ import React from 'react'
 import { useSettingsLogic } from './SettingsLogic.js'
 import './Settings.css'
 import Button from '../../../../components/Button/Button.jsx'
+import ConfirmAlert from '../../../../components/ConfirmAlert/ConfirmAlert.jsx'
 import { IoWarningOutline } from 'react-icons/io5'
 import { FiLock } from 'react-icons/fi'
 import { FiDownload } from 'react-icons/fi'
 import { TbHeartBroken } from 'react-icons/tb'
 
 const Settings = ({ userInfoSettings, userSession, feedToast }) => {
-  const { deleteUserAccount, downloadLinksAsJson } = useSettingsLogic(userSession, feedToast)
+  const {
+    deleteUserAccount,
+    downloadLinksAsJson,
+    isConfirmAlertOpen,
+    onOpenConfirmAlert,
+    onCloseConfirmAlert,
+  } = useSettingsLogic(userSession, feedToast)
 
   return (
     <div id="settings-window">
@@ -18,14 +25,22 @@ const Settings = ({ userInfoSettings, userSession, feedToast }) => {
           <div className="data-section">
             <label className="label">Your name:</label>
             <div className="input-section">
-              <input className="input" value={userInfoSettings.userName} />
+              <input 
+                className="input" 
+                value={userInfoSettings.userName} 
+                readOnly
+              />
               <FiLock className="lock-icon" />
             </div>
           </div>
           <div className="data-section">
             <label className="label">Your email:</label>
             <div className="input-section">
-              <input className="input" value={userInfoSettings.userEmail} />
+              <input 
+                className="input" 
+                value={userInfoSettings.userEmail} 
+                readOnly
+                />
               <FiLock className="lock-icon" />
             </div>
           </div>
@@ -53,16 +68,19 @@ const Settings = ({ userInfoSettings, userSession, feedToast }) => {
             <Button
               className="delete-user"
               Icon={TbHeartBroken}
-              onClick={deleteUserAccount}
+              onClick={onOpenConfirmAlert}
             >
               Delete Account
             </Button>
           </div>
         </div>
-        <p className='subtitle'>
-          Developed by BeruzDev.
-        </p>
+        <p className="subtitle">Developed by BeruzDev.</p>
       </div>
+      <ConfirmAlert
+        isVisible={isConfirmAlertOpen}
+        onCloseConfirmAlert={onCloseConfirmAlert}
+        deleteUserAccount={deleteUserAccount}
+      />
     </div>
   )
 }

@@ -6,8 +6,8 @@ import InputShort from '../../components/InputShort/InputShort.jsx'
 import Button from '../../components/Button/Button.jsx'
 import { TiArrowRightOutline } from 'react-icons/ti'
 
-const Home = ({ feedToast }) => {
-  const { linkData, getInputElement, craftButton } = useHomeLogic(feedToast)
+const Home = ({ feedToast, guestId }) => {
+  const { linkData, getInputElement, craftButton } = useHomeLogic(feedToast, guestId)
 
   return (
     <div id="home">
