@@ -123,7 +123,7 @@ export const useLinksLogic = (
   }
 
   const handleCopy = (shortUrl) => {
-    const domain = 'http://localhost:5000' //!! window.location.origin <- ponerlo cuando compre dominio!
+    const domain = window.location.origin //!! window.location.origin <- ponerlo cuando compre dominio!
     const fullUrl = `${domain}/${shortUrl}`
 
     navigator.clipboard
