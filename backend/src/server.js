@@ -13,7 +13,12 @@ dotenv.config()
 const app = express()
 
 //Middlewares
-app.use(cors())
+app.use(cors({
+  origin: ['https://craftit.vercel.app', 'http://localhost:5173'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+})
+)
 app.use(morgan('dev'))
 app.use(express.json())
 

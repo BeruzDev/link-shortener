@@ -123,7 +123,7 @@ export const useLinksLogic = (
   }
 
   const handleCopy = (shortUrl) => {
-    const domain = window.location.origin //!! window.location.origin <- ponerlo cuando compre dominio!
+    const domain = 'https://link-shortener-backend-1u0r.onrender.com' //!! window.location.origin <- ponerlo cuando compre dominio!
     const fullUrl = `${domain}/${shortUrl}`
 
     navigator.clipboard
