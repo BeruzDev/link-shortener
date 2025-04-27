@@ -21,6 +21,20 @@ const createLink = async (originalUrl, shortUrl, userId, guestId) => {
   return data
 }
 
+// Vincular links con guestId al usuario
+const linkGuestLinksToUser = async (guestId, userId) => {
+  const { data, error } = await supabase
+    .from('links')
+    .update({ user_id: userId, guest_id: null })
+    .eq('guest_id', guestId)
+
+    if (error){
+      throw new Error('Error linking guest links to user: ' + error.message)
+    }
+
+    return data
+}
+
 // Recuperar enlaces de un usuario
 const getLinksByUserId = async (userId) => {
   const { data, error } = await supabase
@@ -133,6 +147,7 @@ const redirectLink = async (shortUrl) => {
 
 export {
   createLink,
+  linkGuestLinksToUser,
   getLinksByUserId,
   getLinksToExport,
   searchLink,

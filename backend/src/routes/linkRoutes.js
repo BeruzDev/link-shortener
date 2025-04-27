@@ -1,6 +1,7 @@
 import express from 'express'
 import {
   createLinkController,
+  linkGuestLinksToUserController,
   getLinksByUserIdController,
   getLinksToExportController,
   searchLinkController,
@@ -14,6 +15,9 @@ const router = express.Router()
 
 // Crear link
 router.post('/', createLinkController)
+
+// Vincular guestId 
+router.post('/link-guest-links', verifySupabaseToken, linkGuestLinksToUserController)
 
 // Obtener links del user 
 router.get('/my-links', verifySupabaseToken, getLinksByUserIdController)

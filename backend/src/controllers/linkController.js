@@ -1,6 +1,7 @@
 import supabase from '../config/db.js'
 import {
   createLink,
+  linkGuestLinksToUser,
   getLinksByUserId,
   getLinksToExport,
   searchLink,
@@ -50,6 +51,27 @@ const createLinkController = async (req, res) => {
     })
   }
 }
+
+// Vincular guestId al usuario logeado
+const linkGuestLinksToUserController = async (req, res) => {
+  const {guestId} = req.body
+  const userId = req.userId
+
+  if(!guestId) {
+    return res.status(400).json({message: 'guestId is required'})
+  }
+
+  try {
+    const updatedLinks = await linkGuestLinksToUser(guestId, userId)
+  } catch (error) {
+    console.error('Error linking guest links to user: ', error)
+    res.status(500).json({
+      message: 'Failed to link links to user',
+      detail: error.message,
+    })
+  }
+}
+
 
 // Recuperar enlaces de un usuario
 const getLinksByUserIdController = async (req, res) => {
@@ -185,6 +207,7 @@ const redirectLinkController = async (req, res) => {
 
 export {
   createLinkController,
+  linkGuestLinksToUserController,
   getLinksByUserIdController,
   getLinksToExportController,
   searchLinkController,

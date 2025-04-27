@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react'
+import callToBackend from './config/config.js'
 import { v4 as uuidv4 } from 'uuid'
 import { FaCheck } from 'react-icons/fa6'
 import { FaXmark } from 'react-icons/fa6'
@@ -33,9 +34,7 @@ export const useAppLogic = () => {
     const newGuestId = uuidv4()
     localStorage.setItem('guestId', newGuestId)
     return newGuestId
-  });
-
-  
+  })
 
   const navigate = useNavigate()
 
@@ -167,6 +166,11 @@ export const useAppLogic = () => {
 
           setUserSession(sessionInfo)
           setUserInfoSettings(sessionUserInfo)
+
+          const guestId = localStorage.getItem('guestId')
+          if (guestId) {
+            await linkGuestLinksToUser(guestId, sessionInfo.accessToken)
+          }
         }
       } catch (error) {
         console.error('Error during session fetch:', error.message)
@@ -175,6 +179,29 @@ export const useAppLogic = () => {
 
     getSessionData()
   }, [])
+
+  const linkGuestLinksToUser = async (guestId, accessToken) => {
+    try {
+      const response = await fetch(`${callToBackend}/links/link-guest-links`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${accessToken}`
+        },
+        body: JSON.stringify({guestId})
+      })
+
+      if(response.ok){
+        console.log('Links successfully linked to user')
+        localStorage.removeItem('guestId')
+      }else{
+        console.error('Failed to link guest links to user')
+      }
+
+    } catch (error) {
+      console.error('Error linking guest links:', error)
+    }
+  }
 
   return {
     confirmAdvice,
