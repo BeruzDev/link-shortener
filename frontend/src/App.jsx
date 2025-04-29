@@ -27,8 +27,6 @@ function App() {
     const { shortUrl } = useParams()
     const { redirect } = useAppLogic
 
-    console.log('short URL useParams -> ', shortUrl)
-
     useEffect(() => {
       if (shortUrl) {
         redirect(shortUrl)
@@ -58,7 +56,7 @@ function App() {
             />
           }
         />
-        <Route path="/:shortUrl" element={RedirectPage}></Route>
+        <Route path="/:shortUrl" element={<RedirectPage/>}></Route>
       </Routes>
 
       <LogModal isVisible={isLogModalOpen} feedToast={feedToast} />
