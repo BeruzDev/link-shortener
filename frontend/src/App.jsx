@@ -25,7 +25,7 @@ function App() {
 
   const RedirectPage = () => {
     const { shortUrl } = useParams()
-    const { redirect } = useAppLogic
+    const { redirect } = useAppLogic()
 
     useEffect(() => {
       if (shortUrl) {
