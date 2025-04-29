@@ -37,6 +37,12 @@
   z-index: 1;
 }
 
+.redirect{
+  color: var(--secondary-font);
+  font-family: monospace;
+  font-size: 30px;
+}
+
 #footer{
   color: var(--detail-1);
   background-color: var(--component-base);

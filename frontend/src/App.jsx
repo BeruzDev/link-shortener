@@ -23,9 +23,11 @@ function App() {
     logoutSession,
   } = useAppLogic()
 
-  const redirectPage = () => {
+  const RedirectPage = () => {
     const { shortUrl } = useParams()
     const { redirect } = useAppLogic
+
+    console.log('short URL useParams -> ', shortUrl)
 
     useEffect(() => {
       if (shortUrl) {
@@ -33,7 +35,7 @@ function App() {
       }
     }, [shortUrl, redirect])
 
-    // return <p className='redirect'>Redirecting...</p>
+    return <p className='redirect'>Redirecting...</p>
   }
 
   return (
@@ -56,7 +58,7 @@ function App() {
             />
           }
         />
-        <Route path="/:shortUrl" element={<redirectPage />}></Route>
+        <Route path="/:shortUrl" element={RedirectPage}></Route>
       </Routes>
 
       <LogModal isVisible={isLogModalOpen} feedToast={feedToast} />
