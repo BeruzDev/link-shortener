@@ -196,10 +196,12 @@ const redirectLinkController = async (req, res) => {
     const originalUrl = await redirectLink(shortUrl)
 
     if (!originalUrl) {
-      res.status(404).send('Redirection not found') //!!<- Aqui ira la pagina HTML de error!!
+      res.status(404).send('Redirection not found')
+    }else{
+      res.status(200).send(originalUrl)
     }
 
-    res.redirect(originalUrl)
+    // res.redirect(originalUrl)
   } catch (error) {
     res.status(500).send('Server error: ' + error.message)
   }
