@@ -114,5 +114,9 @@
 @media (max-width: 750px){
 	#update-modal{
 		padding: 0 10px;
+
+		.dialog{
+			margin: 0 25px;
+		}
 	}
 }
