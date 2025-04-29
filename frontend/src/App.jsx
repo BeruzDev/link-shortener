@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useParams,
+} from 'react-router-dom'
 import { useAppLogic } from './AppLogic.jsx'
 import './App.css'
 import Navbar from './components/Navbar/Navbar.jsx'
@@ -23,19 +28,6 @@ function App() {
     logoutSession,
   } = useAppLogic()
 
-  const RedirectPage = () => {
-    const { shortUrl } = useParams()
-    const { redirect } = useAppLogic()
-
-    useEffect(() => {
-      if (shortUrl) {
-        redirect(shortUrl)
-      }
-    }, [shortUrl, redirect])
-
-    return <p className='redirect'>Redirecting...</p>
-  }
-
   return (
     <div className="app-container">
       <Navbar onOpenModal={toggleLogModal} logoutSession={logoutSession} />
@@ -56,7 +48,6 @@ function App() {
             />
           }
         />
-        <Route path="/:shortUrl" element={<RedirectPage/>}></Route>
       </Routes>
 
       <LogModal isVisible={isLogModalOpen} feedToast={feedToast} />
