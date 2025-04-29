@@ -207,7 +207,6 @@ export const useAppLogic = () => {
     try {
       const response = await fetch(`${callToBackend}/${shortUrl}`)
       if (response.ok) {
-        feedToast('bye')
         const originalUrl = await response.text()
         window.location.href = originalUrl
       }else{
