@@ -203,6 +203,23 @@ export const useAppLogic = () => {
     }
   }
 
+  const redirect = async (shortUrl) =>{
+    try {
+      const response = await fetch(`${callToBackend}/${shortUrl}`)
+      if (response.ok) {
+        feedToast('bye')
+        const originalUrl = await response.text()
+        window.location.href = originalUrl
+      }else{
+        console.error('Short URL not found')
+        feedToast('error')
+      }
+    } catch (error) {
+      console.error("Can't redirect to: ", originalUrl)
+      feedToast('error')
+    }
+  }
+
   return {
     confirmAdvice,
     message,
@@ -215,5 +232,6 @@ export const useAppLogic = () => {
     feedToast,
     toggleLogModal,
     logoutSession,
+    redirect
   }
 }

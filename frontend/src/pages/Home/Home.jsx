@@ -11,7 +11,7 @@ const Home = ({ feedToast, guestId }) => {
 
   return (
     <div id="home">
-      <h1 id="title">Link Craft</h1>
+      <h1 id="title">Craft it!</h1>
       <p id="subtitle">
         Manage your endpoints and share your links easily, clearly, and
         securely.

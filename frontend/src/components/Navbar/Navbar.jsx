@@ -11,7 +11,7 @@ const Navbar = ({ onOpenModal, logoutSession }) => {
 
 	return (
 		<nav id='navbar'>
-			<p id='logo'>Link Craft</p>
+			<p id='logo'>Craft it!</p>
 			<div className='btn-zone'>
 			<Button className="navbar-button" Icon={BsGithub} onClick={() => window.open('https://github.com/BeruzDev/link-shortener',  '_blank', 'noopener,noreferrer')} />
 
