@@ -209,6 +209,7 @@ export const useAppLogic = () => {
       if (response.ok) {
         feedToast('bye')
         const originalUrl = await response.text()
+        console.log('original url -> ',originalUrl)
         window.location.href = originalUrl
       }else{
         console.error('Short URL not found')
