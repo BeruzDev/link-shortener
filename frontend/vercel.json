@@ -1,12 +1,12 @@
 {
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    },
-    {
       "source": "/:shortUrl",
       "destination": "https://link-shortener-backend-1u0r.onrender.com/:shortUrl"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }

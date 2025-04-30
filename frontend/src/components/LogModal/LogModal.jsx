@@ -1,7 +1,7 @@
 import React from 'react'
 import './LogModal.css'
 import Button from '../Button/Button.jsx'
-import logo from '../../assets/logos/logo.png'
+import logo from '../../assets/logos/logo3.png'
 import { FcGoogle } from 'react-icons/fc'
 import { BsGithub } from 'react-icons/bs'
 import { useLogModal } from './LogModalLogic.js'

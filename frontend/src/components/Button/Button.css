@@ -369,4 +369,8 @@
   .crafter-button{
     transform: rotate(90deg);
   }
+
+  .login-button{
+    margin-bottom: 20px;
+  }
 }
