@@ -2,12 +2,6 @@
   "rewrites": [
     {
       "source": "/:shortUrl",
-      "has": [
-        {
-          "type": "host",
-          "value": "craftit.vercel.app"
-        }
-      ],
       "destination": "https://link-shortener-backend-1u0r.onrender.com/:shortUrl"
     },
     {
