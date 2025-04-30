@@ -28,7 +28,7 @@ const Home = ({ feedToast, guestId }) => {
           Icon={TiArrowRightOutline}
           onClick={() => {
             craftButton()
-            navigator.clipboard.writeText(`https://craftit.vercel.app/${linkData.shortUrl}`) //!! <-- cambiar al dominio!
+            navigator.clipboard.writeText(`https://craftit.vercel.app/${linkData.shortUrl}`)
           }}
         />
         <InputShort
