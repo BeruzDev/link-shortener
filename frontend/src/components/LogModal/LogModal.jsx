@@ -1,7 +1,7 @@
 import React from 'react'
 import './LogModal.css'
 import Button from '../Button/Button.jsx'
-import logo from '../../assets/logos/logo3.png'
+import logo from '../../assets/logos/logo6.png'
 import { FcGoogle } from 'react-icons/fc'
 import { BsGithub } from 'react-icons/bs'
 import { useLogModal } from './LogModalLogic.js'
@@ -13,7 +13,7 @@ const LogModal = ({ isVisible, feedToast }) => {
     <div id="log" className={isVisible ? 'visible' : 'hidden'}>
       <div id="log-cont">
         <img id="logo" src={logo} alt="Log in logo" />
-        <h2 id="title-log">Log in to Link Craft</h2>
+        <h2 id="title-log">Log in to Craft it!</h2>
         <p id="text-log">
           Log in with your favourite social provider to get started:
         </p>
