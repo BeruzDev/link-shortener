@@ -5,6 +5,7 @@ import InputLink from '../../components/InputLink/InputLink.jsx'
 import InputShort from '../../components/InputShort/InputShort.jsx'
 import Button from '../../components/Button/Button.jsx'
 import { TiArrowRightOutline } from 'react-icons/ti'
+import SkeletonLinkElement from '../../components/SkeletonLinkElement/SkeletonLinkElement.jsx'
 
 const Home = ({ feedToast, guestId }) => {
   const { linkData, getInputElement, craftButton } = useHomeLogic(feedToast, guestId)
@@ -27,7 +28,7 @@ const Home = ({ feedToast, guestId }) => {
           Icon={TiArrowRightOutline}
           onClick={() => {
             craftButton()
-            navigator.clipboard.writeText(`https://link-shortener-backend-1u0r.onrender.com/${linkData.shortUrl}`) //!! <-- cambiar al dominio!
+            navigator.clipboard.writeText(`https://craftit.vercel.app/${linkData.shortUrl}`) //!! <-- cambiar al dominio!
           }}
         />
         <InputShort

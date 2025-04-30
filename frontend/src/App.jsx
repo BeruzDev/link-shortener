@@ -2,7 +2,6 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  useParams,
 } from 'react-router-dom'
 import { useAppLogic } from './AppLogic.jsx'
 import './App.css'
@@ -11,7 +10,6 @@ import Home from './pages/Home/Home.jsx'
 import Dashboard from './pages/Dashboard/Dashboard.jsx'
 import Toast from './components/Toast/Toast.jsx'
 import LogModal from './components/LogModal/LogModal.jsx'
-import { useEffect } from 'react'
 
 function App() {
   const {
