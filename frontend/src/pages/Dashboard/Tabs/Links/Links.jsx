@@ -86,6 +86,8 @@ const Links = ({
 						getCreateInputElement={getCreateInputElement}
 					/>
         ))}
+
+        <SkeletonLinkElement />
       </div>
 
       <CrafterModal
