@@ -1,4 +1,4 @@
-import React from 'react'
+ import React from 'react'
 import './LinkElement.css'
 import Button from '../Button/Button.jsx'
 import { HiOutlineDuplicate } from "react-icons/hi";

@@ -7,7 +7,7 @@ import CrafterModal from '../../../../components/CrafterModal/CrafterModal.jsx'
 import LinkElement from '../../../../components/LinkElement/LinkElement.jsx'
 import { FaPlus } from 'react-icons/fa6'
 import UpdateModal from '../../../../components/UpdateModal/UpdateModal.jsx'
-import { CgLayoutGrid } from 'react-icons/cg'
+import SkeletonLinkElement from '../../../../components/SkeletonLinkElement/SkeletonLinkElement.jsx'
 
 const Links = ({
   isCrafterModalOpen,
@@ -16,6 +16,7 @@ const Links = ({
   feedToast,
   userSession,
   linkStored,
+  isLoading,
   getUserLinks,
   setisAnyModalOpen
 }) => {
@@ -42,7 +43,7 @@ const Links = ({
     onCloseCrafterModal,
     getUserLinks,
     linkStored,
-    setisAnyModalOpen
+    setisAnyModalOpen,
   )
 
   return (
@@ -68,7 +69,11 @@ const Links = ({
         </Button>
       </div>
       <div className="bento-section">
-        {(searchResults.length > 0 ? searchResults : linkStored).map((link) => (
+        {isLoading
+          ? Array.from({ length: 6 }).map((_, index) => (
+            <SkeletonLinkElement key={index} />
+          ))
+          : (searchResults.length > 0 ? searchResults : linkStored).map((link) => (
           <LinkElement
 						key={link.id}
 						id={link.id}

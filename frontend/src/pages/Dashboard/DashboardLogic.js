@@ -8,6 +8,7 @@ export const useDashboard = (userSession) => {
   const [isAnyModalOpen, setisAnyModalOpen] = useState(false);
   const [linkStored, setLinkStored] = useState([])
   const [activeTab, setActiveTab] = useState('links')
+  const [isLoading, setIsLoading] = useState(true);
 
   const onOpenCrafterModal = () => {
     setIsCrafterModalOpen(true)
@@ -27,6 +28,7 @@ export const useDashboard = (userSession) => {
     const { accessToken } = userSession
 
     try {
+      setIsLoading(true)
       const response = await fetch(`${callToBackend}/links/my-links`, {
         method: 'GET',
         headers: {
@@ -51,6 +53,8 @@ export const useDashboard = (userSession) => {
 
     } catch (error) {
       console.error('Error getting links from user:', error)
+    } finally {
+      setIsLoading(false)
     }
   },[userSession])
 
@@ -61,6 +65,7 @@ export const useDashboard = (userSession) => {
     activeTab,
     setActiveTab,
     tabs,
+    isLoading,
     getUserLinks,
     linkStored,
     isAnyModalOpen,

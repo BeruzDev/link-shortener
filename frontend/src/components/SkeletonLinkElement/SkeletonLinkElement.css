@@ -1,0 +1,31 @@
+.skeleton{
+	height: 96px;
+	box-sizing: border-box;
+	background-color: var(--opacity-base);
+	margin: 5px;
+	border-radius: 5px;
+	padding: 12px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	box-shadow: 0 0 0 0.2px var(--secondary-font);
+
+	.top-section{
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 10px;
+
+		.buttons-section{
+			display: flex;
+			gap: 10px;
+		}
+	}
+
+	.mid-section{
+		margin-bottom: 10px;
+	}
+
+	.bot-section{
+		text-align: left;
+	}
+}

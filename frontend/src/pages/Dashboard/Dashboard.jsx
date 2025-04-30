@@ -13,6 +13,7 @@ const Dashboard = ({ feedToast, userSession, userInfoSettings }) => {
     activeTab,
     setActiveTab,
     tabs,
+    isLoading,
     getUserLinks,
     linkStored,
     isAnyModalOpen,
@@ -57,6 +58,7 @@ const Dashboard = ({ feedToast, userSession, userInfoSettings }) => {
           userSession={userSession}
           userInfoSettings={userInfoSettings}
           linkStored={linkStored}
+          isLoading={isLoading}
           getUserLinks={getUserLinks}
           feedToast={feedToast}
         />
