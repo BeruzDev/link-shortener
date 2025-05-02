@@ -1,12 +1,12 @@
 # 🚀 Craft it! - Acortador de Enlaces
 
-**Craft it!** es una aplicación web full stack que permite a los usuarios acortar enlaces largos, gestionarlos de forma sencilla y exportarlos en formato JSON. Está pensada para ser intuitiva, moderna y segura, con soporte para autenticación mediante OAuth (Google y GitHub) y uso sin registro.
+**Craft it!** es una aplicación web full stack que permite a los usuarios acortar enlaces largos, gestionarlos de forma sencilla y exportarlos en formato JSON. Está pensada para ser intuitiva, moderna y segura, con soporte para autenticación mediante OAuth con Google y GitHub, y también permite su uso sin registro.
 
 ---
 
 ## 🧹 Características Principales
 
-* 🔗 **Acortar enlaces:** crea URLs cortas personalizadas o automáticas.
+* 🔗 **Acortar enlaces:** crea URLs cortas personalizadas.
 * 🛠️ **Gestión de enlaces:** edita, elimina y organiza tus enlaces desde el dashboard.
 * 📂 **Exportación:** descarga todos tus enlaces en formato JSON.
 * 🔐 **Autenticación segura:** inicia sesión con Google o GitHub gracias a Supabase.
