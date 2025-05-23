@@ -25,6 +25,7 @@ const Home = ({ feedToast, guestId }) => {
         />
         <Button
           className="crafter-button"
+          aria-label="Short your link"
           Icon={TiArrowRightOutline}
           onClick={() => {
             craftButton()
