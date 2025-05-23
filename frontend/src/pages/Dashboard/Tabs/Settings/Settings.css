@@ -3,7 +3,7 @@
 	height: auto;
 	display: grid;
 	grid-template-columns: 70% auto;
-	padding: 0 250px;
+	padding: 0 5%;
 	position: relative;
 
 	.user-section{
