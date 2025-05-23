@@ -15,21 +15,24 @@ const LinkElement = ({ id, originalUrl, shortUrl, createdAt, handleCopy, handleD
 					{shortUrl}
 				</div>
 				<div className='buttons-section'>
-				<Button
-          className="copy-link"
-          Icon={HiOutlineDuplicate}
-					onClick={handleCopy}
-        />
-				<Button
-          className="edit-link"
-          Icon={TbEdit}
-					onClick={onOpenUpdateModal}
-        />
-				<Button
-          className="delete-link"
-          Icon={RiDeleteBin7Line}
-					onClick={handleDelete}
-        />
+					<Button
+						className="copy-link"
+						aria-label='Copy shortened link to clipboard'
+						Icon={HiOutlineDuplicate}
+						onClick={handleCopy}
+					/>
+					<Button
+						className="edit-link"
+						aria-label='Open a popup to edit the link'
+						Icon={TbEdit}
+						onClick={onOpenUpdateModal}
+					/>
+					<Button
+						className="delete-link"
+						aria-label='Delete the link permanently'
+						Icon={RiDeleteBin7Line}
+						onClick={handleDelete}
+					/>
 				</div>
 			</div>
 			<div className='mid-section'>
