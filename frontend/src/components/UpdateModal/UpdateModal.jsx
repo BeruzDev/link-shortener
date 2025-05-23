@@ -22,6 +22,7 @@ const UpdateModal = ({
           <div className="button-cont">
             <Button
               className="close"
+              area-label="Close modal"
               Icon={IoIosClose}
               onClick={onCloseUpdateModal}
             />

@@ -20,6 +20,7 @@ const CrafterModal = ({
           <p className="header-tittle">Create a link</p>
           <div className="button-cont">
             <Button
+              area-label="Close modal"
               className={'close'}
               Icon={IoIosClose}
               onClick={onCloseCrafterModal}
