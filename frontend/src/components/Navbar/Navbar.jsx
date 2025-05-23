@@ -13,7 +13,7 @@ const Navbar = ({ onOpenModal, logoutSession }) => {
 		<nav id='navbar'>
 			<p id='logo'>Craft it!</p>
 			<div className='btn-zone'>
-			<Button className="navbar-button" Icon={BsGithub} onClick={() => window.open('https://github.com/BeruzDev/link-shortener',  '_blank', 'noopener,noreferrer')} />
+			<Button className="navbar-button" aria-label="Open the github project page" Icon={BsGithub} onClick={() => window.open('https://github.com/BeruzDev/link-shortener',  '_blank', 'noopener,noreferrer')} />
 
 			{!isDashboard ? (
 				<Button className="get-started" Icon={FaArrowRightLong} onClick={onOpenModal}>
